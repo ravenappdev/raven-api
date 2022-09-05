@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://maven-dev.buildwithfern.com"
+    }
+}
+
+dependencies {
+    implementation 'TODO'
+}

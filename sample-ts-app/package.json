@@ -1,0 +1,15 @@
+{
+	"name": "sample-ts-app",
+	"devDependencies": {
+		"@types/node": "^18.0.0",
+		"ts-node": "^10.8.1",
+		"typescript": "^4.7.4"
+	},
+	"dependencies": {
+		"TODO": "TODO",
+		"dotenv": "^16.0.1"
+	},
+	"scripts": {
+		"dev": "ts-node src/app.ts "
+	}
+}
