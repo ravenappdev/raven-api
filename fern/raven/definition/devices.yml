@@ -1,0 +1,65 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
+
+imports:
+  commons: commons.yml
+
+services:
+  http:
+    DevicesService:
+      auth: true
+      base-path: /v1/apps
+      endpoints:
+        addDevice:
+          docs: Add Device for a User
+          method: POST
+          path: /{app_id}/users/{user_id}/devices
+          path-parameters:
+            app_id:
+              type: commons.AppId
+              docs: your app identifier
+            user_id:
+              type: commons.UserId
+              docs: your user identifier
+          request: AddDeviceRequest
+
+        updateDevice:
+          docs: Update Device for a User
+          method: PUT
+          path: /{app_id}/users/{user_id}/devices/{device_id}
+          path-parameters:
+            app_id:
+              type: commons.AppId
+              docs: your app identifier
+            user_id:
+              type: commons.UserId
+              docs: your user identifier
+            device_id:
+              type: commons.DeviceId
+              docs: your device identifier
+          request: UpdateDeviceRequest
+
+        deleteDevice:
+          docs: Delete Device for a User
+          method: DELETE
+          path: /{app_id}/users/{user_id}/devices/{device_id}
+          path-parameters:
+            app_id:
+              type: commons.AppId
+              docs: your app identifier
+            user_id:
+              type: commons.UserId
+              docs: your user identifier
+            device_id:
+              type: commons.DeviceId
+              docs: your device identifier
+
+types:
+  AddDeviceRequest:
+    properties:
+      fcm_token: optional<string>
+      platform: optional<commons.Platform>
+
+  UpdateDeviceRequest:
+    properties:
+      fcm_token: optional<string>
+      platform: optional<commons.Platform>

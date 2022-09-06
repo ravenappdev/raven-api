@@ -6,7 +6,7 @@
 		"typescript": "^4.7.4"
 	},
 	"dependencies": {
-		"TODO": "TODO",
+		"@raven-fern/raven-client": "0.0.2",
 		"dotenv": "^16.0.1"
 	},
 	"scripts": {

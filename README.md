@@ -1,12 +1,10 @@
-# TODO API Clients
+# Raven
 
 This repository contains:
 
-- [Fern API Definition](./fern/api/definition) of the TODO API
+- [Fern API Definition](/fern/raven/definition/events.yml) of the Events API
 - [Sample TypeScript app](./sample-ts-app/src/app.ts) consuming [generated TypeScript SDK](./sample-ts-app/package.json#L9)
-- [Sample Java app](./sample-java-app/src/main/java/com/sample/app/SampleApp.java) consuming [generated Java SDK](./sample-java-app/build.gradle#L13)
-- [Auto-generated OpenAPI spec](./api/generated-openapi.yml)
-- [Auto-generated Postman collection](./api/generated-postman.json)
+
 
 ## TypeScript Sample App
 

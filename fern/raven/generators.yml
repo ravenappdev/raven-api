@@ -1,0 +1,8 @@
+draft:
+  - name: fernapi/fern-postman
+    version: 0.0.22
+    local-output: ./generated-postman.json
+  - name: fernapi/fern-typescript
+    version: 0.0.189
+    config:
+      mode: client-v2

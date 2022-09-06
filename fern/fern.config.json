@@ -1,6 +1,4 @@
 {
-    "workspaces": [
-        "**"
-    ],
-    "organization": "TODO"
+  "organization": "raven",
+  "version": "0.0.189"
 }

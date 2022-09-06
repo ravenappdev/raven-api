@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
+
+imports:
+  commons: commons.yml
+
+services:
+  http:
+    UsersService:
+      auth: true
+      base-path: /v1/apps
+      endpoints:
+      
+        createUser:
+          docs: Creates an AppUser if doesn't exist already, or updates user properties 
+          method: POST
+          path: /{app_id}/users
+          path-parameters:
+            app_id: commons.AppId
+          request: CreateUserRequest
+          response: unknown # Not documented in Docs.
+
+        getUserProfile:
+          docs: Gets the requested user profile
+          method: GET 
+          path: /{app_id}/users/{user_id}
+          path-parameters:
+            app_id: 
+              type: commons.AppId
+              docs: your app identifier
+            user_id: 
+              type: commons.UserId
+              docs: your user identifier
+          response: commons.UserProfile
+
+types:
+  CreateUserRequest:
+    properties:
+      user_id: 
+        type: string 
+        docs: | 
+          Your user identifier. 
+          if user_id already exists, user properties will be updated else a new user will be created
+      mobile:
+        type: optional<string>  
+      email:
+        type: optional<string>
+      whatsapp_mobile:
+        type: optional<string>
+        docs: Include this only when user's whatsapp mobile is different than primary mobile
+
+  

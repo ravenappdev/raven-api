@@ -1,0 +1,76 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
+
+imports:
+  commons: commons.yml
+
+services:
+  http:
+    EventsService:
+      auth: true
+      base-path: /v1/apps
+      endpoints:
+
+        sendEvent:
+          docs: This endpoint allows you to send messages
+          method: POST
+          path: /{app_id}/events/send
+          path-parameters:
+            app_id: commons.AppId
+          request: EventRequest
+          response: EventResponse
+          errors:
+            - EventNotFoundError
+            
+        sendBulkEvents:
+          method: POST 
+          path: /{app_id}/events/bulk_send
+          path-parameters:
+            app_id: commons.AppId
+          request: BulkEventsRequest
+
+types:
+  EventRequest:
+    properties:
+      event:
+        type: string
+        docs: event name
+      data:
+        type: unknown
+        docs: |
+          {
+          "param1" : "<value1>",
+          "param2" : "<value2>",
+          "param3" : object/array"
+          }
+      user:
+        type: optional<commons.User>
+      override:
+        type: optional<unknown>
+
+  EventResponse:
+    properties:
+      request_id: commons.RequestId
+      success: boolean
+
+  BulkEventsRequest: 
+    properties:
+      event: string 
+      batch: list<BatchEvent>
+
+  BatchEvent:
+    properties:
+      data:
+        type: unknown
+        docs: |
+          {
+          "param1" : "<value1>",
+          "param2" : "<value2>",
+          "param3" : object/array"
+          }
+      user:
+        type: optional<commons.User>
+    
+errors:
+  EventNotFoundError:
+    http:
+      statusCode: 404
