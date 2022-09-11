@@ -2,7 +2,6 @@
 
 imports:
   ids: ids.yml
-  users: users.yml
 
 services:
   http:
@@ -17,20 +16,25 @@ services:
           path: /{app_id}/events/send
           path-parameters:
             app_id: ids.AppId
-          request: EventRequest
-          response: EventResponse
+          request: SendEventRequest
+          response: SendEventResponse
           errors:
             - EventNotFoundError
+            - EventNotPublishedError
             
         sendBulkEvents:
           method: POST 
           path: /{app_id}/events/bulk_send
           path-parameters:
             app_id: ids.AppId
-          request: BulkEventsRequest
+          request: BulkSendEventRequest
+          response: SendEventResponse
+          errors:
+            - EventNotFoundError
+            - EventNotPublishedError
 
 types:
-  EventRequest:
+  SendEventRequest:
     properties:
       event:
         type: string
@@ -44,9 +48,38 @@ types:
           "param3" : object/array"
           }
       user:
-        type: optional<users.User>
+        type: optional<User>
+      scheduleAt: 
+        type: optional<long>
+        docs: | 
+          Time to send message expressed as UTC milliseconds. 
+          If not present, message will be sent immediately.
       override:
         type: optional<EventOverride>
+  
+  User:
+    properties:
+      user_id:
+        type: ids.UserId
+        docs: |
+          userId to send the notifications to. 
+          This is  your own user identifier which you have used to create user on Raven
+      email:
+        type: optional<string>
+      mobile:
+        type: optional<string>
+        docs: mobile with country code prefix (e.g +91)
+      whatsapp_mobile:
+        type: optional<string>
+        docs: |
+          mobile with country code prefix (e.g. +91).
+          if empty, `mobile` is considered for whatsapp
+      onesignal_external_id:
+        type: optional<string>
+        docs: "[OneSignal external user IDs](https://documentation.onesignal.com/docs/external-user-ids)"
+      fcm_tokens:
+        type: optional<list<string>>
+        docs: List of fcm tokens.  eg. ["<fcmtoken1", "<fcmtoken2>"]
   
   EventOverride: 
     properties: 
@@ -144,12 +177,12 @@ types:
       path_params: list<Param>
       headers: list<Param>
 
-  EventResponse:
+  SendEventResponse:
     properties:
-      request_id: ids.RequestId
+      id: ids.RequestId # docs say request_id, but SendRavenEventResponse.java has id
       success: boolean
 
-  BulkEventsRequest: 
+  BulkSendEventRequest: 
     properties:
       event: string 
       batch: list<BatchEvent>
@@ -157,7 +190,7 @@ types:
   BatchEvent:
     properties:
       data:
-        type: unknown
+        type: map<string, unknown>
         docs: |
           {
           "param1" : "<value1>",
@@ -165,9 +198,16 @@ types:
           "param3" : object/array"
           }
       user:
-        type: optional<users.User>
+        type: optional<User>
+      override:
+        type: optional<EventOverride>
     
 errors:
   EventNotFoundError:
     http:
       statusCode: 404
+  EventNotPublishedError: 
+    http: 
+      statusCode: 400
+    docs: Event must be published before it can be sent
+  

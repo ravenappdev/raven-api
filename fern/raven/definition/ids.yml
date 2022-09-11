@@ -3,3 +3,8 @@ types:
   UserId: string
   RequestId: string
   DeviceId: string
+
+errors: 
+  AppNotFoundError: 
+    http: 
+      statusCode: 404

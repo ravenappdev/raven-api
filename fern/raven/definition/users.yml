@@ -11,14 +11,16 @@ services:
       base-path: /v1/apps
       endpoints:
       
-        createUser:
+        createOrUpdateUser:
           docs: Creates an AppUser if doesn't exist already, or updates user properties 
           method: POST
           path: /{app_id}/users
           path-parameters:
             app_id: ids.AppId
-          request: CreateUserRequest
+          request: CreateOrUpdateUserRequest
           response: unknown # Not documented in Docs.
+          errors: 
+            - AppNotFoundError
 
         getUserProfile:
           docs: Gets the requested user profile
@@ -32,12 +34,14 @@ services:
               type: ids.UserId
               docs: your user identifier
           response: UserProfile
+          errors: 
+            - AppNotFoundError
 
 types:
-  CreateUserRequest:
+  CreateOrUpdateUserRequest:
     properties:
       user_id: 
-        type: string 
+        type: ids.UserId 
         docs: | 
           Your user identifier. 
           if user_id already exists, user properties will be updated else a new user will be created
@@ -48,30 +52,17 @@ types:
       whatsapp_mobile:
         type: optional<string>
         docs: Include this only when user's whatsapp mobile is different than primary mobile
-  
-  User:
-    properties:
-      user_id:
-        type: ids.UserId
-        docs: |
-          userId to send the notifications to. 
-          This is  your own user identifier which you have used to create user on Raven
-      email:
-        type: optional<string>
-      mobile:
-        type: optional<string>
-        docs: mobile with country code prefix (e.g +91)
-      whatsapp_mobile:
-        type: optional<string>
-        docs: |
-          mobile with country code prefix (e.g. +91).
-          if empty, `mobile` is considered for whatsapp
-      onesignal_external_id:
-        type: optional<string>
-        docs: "[OneSignal external user IDs](https://documentation.onesignal.com/docs/external-user-ids)"
-      fcm_tokens:
-        type: optional<list<string>>
-        docs: List of fcm tokens.  eg. ["<fcmtoken1", "<fcmtoken2>"]
+      onesignal_external_id: list<string> 
+      
+      fcm_tokens: list<string>
+      ios_tokens: list<string>
+
+  SlackProfile: 
+    properties: 
+      access_token: string
+      email: string
+      channel_id: string
+      
 
   UserProfile:
     properties:
