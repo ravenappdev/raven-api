@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
 
 imports:
-  commons: commons.yml
+  ids: ids.yml
 
 services:
   http:
@@ -15,10 +15,10 @@ services:
           path: /{app_id}/users/{user_id}/devices
           path-parameters:
             app_id:
-              type: commons.AppId
+              type: ids.AppId
               docs: your app identifier
             user_id:
-              type: commons.UserId
+              type: ids.UserId
               docs: your user identifier
           request: AddDeviceRequest
 
@@ -28,13 +28,13 @@ services:
           path: /{app_id}/users/{user_id}/devices/{device_id}
           path-parameters:
             app_id:
-              type: commons.AppId
+              type: ids.AppId
               docs: your app identifier
             user_id:
-              type: commons.UserId
+              type: ids.UserId
               docs: your user identifier
             device_id:
-              type: commons.DeviceId
+              type: ids.DeviceId
               docs: your device identifier
           request: UpdateDeviceRequest
 
@@ -44,22 +44,37 @@ services:
           path: /{app_id}/users/{user_id}/devices/{device_id}
           path-parameters:
             app_id:
-              type: commons.AppId
+              type: ids.AppId
               docs: your app identifier
             user_id:
-              type: commons.UserId
+              type: ids.UserId
               docs: your user identifier
             device_id:
-              type: commons.DeviceId
+              type: ids.DeviceId
               docs: your device identifier
 
 types:
   AddDeviceRequest:
     properties:
       fcm_token: optional<string>
-      platform: optional<commons.Platform>
+      platform: optional<Platform>
 
   UpdateDeviceRequest:
     properties:
       fcm_token: optional<string>
-      platform: optional<commons.Platform>
+      platform: optional<Platform>
+  
+  DeviceProfile:
+    properties:
+      created_at: integer
+      updated_at: integer
+      platform: string
+      fcm_token: string
+      device_sid: string # Should this be DeviceId?
+      notifications_disabled: boolean
+
+  Platform:
+    enum:
+      - ANDROID
+      - WEB
+      - IOS

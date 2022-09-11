@@ -1,7 +1,8 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
 
 imports:
-  commons: commons.yml
+  ids: ids.yml
+  users: users.yml
 
 services:
   http:
@@ -15,7 +16,7 @@ services:
           method: POST
           path: /{app_id}/events/send
           path-parameters:
-            app_id: commons.AppId
+            app_id: ids.AppId
           request: EventRequest
           response: EventResponse
           errors:
@@ -25,7 +26,7 @@ services:
           method: POST 
           path: /{app_id}/events/bulk_send
           path-parameters:
-            app_id: commons.AppId
+            app_id: ids.AppId
           request: BulkEventsRequest
 
 types:
@@ -35,7 +36,7 @@ types:
         type: string
         docs: event name
       data:
-        type: unknown
+        type: map<string, unknown>
         docs: |
           {
           "param1" : "<value1>",
@@ -43,13 +44,109 @@ types:
           "param3" : object/array"
           }
       user:
-        type: optional<commons.User>
+        type: optional<users.User>
       override:
-        type: optional<unknown>
+        type: optional<EventOverride>
+  
+  EventOverride: 
+    properties: 
+      email: optional<EmailOverride>
+      sms: optional<SmsOverride>
+      whatsapp: optional<WhatsappOverride>
+      push: optional<PushOverride>
+      webhook: optional<WebhookOverride>
+      voice: optional<VoiceOverride>
+      slack: optional<SlackOverride>
+      in_app: optional<InAppOverride>
+      telegram: optional<TelegramOverride>
+      providers: map<string, ProviderOverride>
+
+  ChannelOverride: 
+    properties: 
+      schedule_at: long
+
+  EmailRecipient: 
+    properties: 
+      name: string
+      address: string
+  
+  Attachment: 
+    properties: 
+      file_name: string
+      content: string
+      url: string
+  
+  EmailMessage: 
+    properties: 
+      text: string
+      html_body: string
+      subject: string
+  
+  EmailOverride: 
+    extends: ChannelOverride
+    properties:
+      from: EmailRecipient
+      cc: list<EmailRecipient>
+      bcc: list<EmailRecipient>
+      attachments: list<Attachment>
+      message: EmailMessage
+  
+  SmsMessage: 
+    properties: 
+      text: string
+  
+  SmsOverride: 
+    extends: ChannelOverride
+    properties: 
+      sender: string
+      message: SmsMessage
+  
+  WhatsappOverride: 
+    extends: ChannelOverride
+    properties: 
+      message: SmsMessage
+
+  PushOverride: 
+    extends: ChannelOverride
+  
+  WebhookOverride:
+    extends: ChannelOverride
+  
+  VoiceOverride:
+    extends: ChannelOverride
+  
+  SlackMessage: 
+    properties: 
+      text: string
+      blocks: unknown
+  
+  SlackOverride: 
+    extends: ChannelOverride
+    properties: 
+      message: SlackMessage
+  
+  InAppOverride: 
+    extends: ChannelOverride
+  
+  TelegramOverride: 
+    extends: ChannelOverride
+  
+  Param: 
+    properties: 
+      name: string
+      value: string
+
+  ProviderOverride: 
+    properties: 
+      payload: map<string, unknown>
+      form_params: list<Param>
+      query_params: list<Param>
+      path_params: list<Param>
+      headers: list<Param>
 
   EventResponse:
     properties:
-      request_id: commons.RequestId
+      request_id: ids.RequestId
       success: boolean
 
   BulkEventsRequest: 
@@ -68,7 +165,7 @@ types:
           "param3" : object/array"
           }
       user:
-        type: optional<commons.User>
+        type: optional<users.User>
     
 errors:
   EventNotFoundError:

@@ -1,7 +1,8 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
 
 imports:
-  commons: commons.yml
+  ids: ids.yml
+  devices: devices.yml
 
 services:
   http:
@@ -15,7 +16,7 @@ services:
           method: POST
           path: /{app_id}/users
           path-parameters:
-            app_id: commons.AppId
+            app_id: ids.AppId
           request: CreateUserRequest
           response: unknown # Not documented in Docs.
 
@@ -25,12 +26,12 @@ services:
           path: /{app_id}/users/{user_id}
           path-parameters:
             app_id: 
-              type: commons.AppId
+              type: ids.AppId
               docs: your app identifier
             user_id: 
-              type: commons.UserId
+              type: ids.UserId
               docs: your user identifier
-          response: commons.UserProfile
+          response: UserProfile
 
 types:
   CreateUserRequest:
@@ -47,5 +48,40 @@ types:
       whatsapp_mobile:
         type: optional<string>
         docs: Include this only when user's whatsapp mobile is different than primary mobile
+  
+  User:
+    properties:
+      user_id:
+        type: ids.UserId
+        docs: |
+          userId to send the notifications to. 
+          This is  your own user identifier which you have used to create user on Raven
+      email:
+        type: optional<string>
+      mobile:
+        type: optional<string>
+        docs: mobile with country code prefix (e.g +91)
+      whatsapp_mobile:
+        type: optional<string>
+        docs: |
+          mobile with country code prefix (e.g. +91).
+          if empty, `mobile` is considered for whatsapp
+      onesignal_external_id:
+        type: optional<string>
+        docs: "[OneSignal external user IDs](https://documentation.onesignal.com/docs/external-user-ids)"
+      fcm_tokens:
+        type: optional<list<string>>
+        docs: List of fcm tokens.  eg. ["<fcmtoken1", "<fcmtoken2>"]
+
+  UserProfile:
+    properties:
+      user_sid: string
+      user_id: ids.UserId
+      mobile: optional<string>
+      email: optional<string>
+      whatsapp_mobile: optional<string>
+      devices: list<devices.DeviceProfile>
+      created_at: integer
+      updated_at: integer
 
   
