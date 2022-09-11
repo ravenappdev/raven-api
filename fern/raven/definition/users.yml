@@ -71,7 +71,7 @@ types:
       onesignal_player_ids: optional<list<string>>
       ios_tokens: optional<list<string>>
       available_channels: optional<list<Channel>>
-      devices: list<devices.DeviceProfile>
+      devices: list<devices.Device>
       user_preferences: optional<UserPreferences>
       # The created and updated at fields should only be modified by the server. 
       # Adding these in the request body communicates that a user can modify these 

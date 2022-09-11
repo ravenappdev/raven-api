@@ -11,3 +11,6 @@ errors:
   UserNotFoundError: 
     http: 
       statusCode: 404
+  DeviceNotFoundError: 
+    http: 
+      statusCode: 404
