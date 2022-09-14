@@ -5,7 +5,6 @@ This repository contains:
 - [Fern Definition](/fern/raven/definition/) of the Devices, Events, and Users APIs
 - [Sample TypeScript app](./sample-ts-app/src/app.ts) consuming [generated TypeScript SDK](./sample-ts-app/package.json#L9)
 
-
 ## TypeScript Sample App
 
 The core logic lives in [app.ts](./sample-ts-app/src/app.ts).
@@ -13,18 +12,24 @@ The core logic lives in [app.ts](./sample-ts-app/src/app.ts).
 > Fern provides the user with an easy way to instantiate a client,
 
 ```typescript
-const client = TODO;
+const ravenClient = new Raven.Client({
+  _origin: "https://api.ravenapp.dev"
+});
 ```
 
 > type safety when invoking different endpoints,
 
 ```typescript
-const response = TODO;
+const response = await ravenClient.devices.getDevice({
+  deviceId: "12345678",
+  appId: "12345678",
+  userId: "12345678"
+});
 ```
 
 > and auto-complete.
 
-![Autocomplete of client](./TODO.png)
+![Autocomplete of client](autocomplete.png)
 
 **Run the sample app:**
 
@@ -33,25 +38,3 @@ cd sample-ts-app
 npm install
 npm run dev
 ```
-
-## Java Sample App
-
-The core logic lives in [SampleApp.java](./sample-java-app/src/main/java/com/sample/app/SampleApp.java).
-
-> Fern provides the user with an easy way to instantiate a client
-
-```java
-TODO client = TODO
-  .getClient("TODO")
-```
-
-> and type safety when invoking different endpoints.
-
-```java
-TODO
-```
-
-**Run the sample app:**
-
-- opening [./sample-java-app](./sample-java-app/) in Intellij
-- hitting play on main
