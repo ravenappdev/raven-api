@@ -3,7 +3,7 @@ draft:
     version: 0.0.22
     local-output: ./generated-postman.json
   - name: fernapi/fern-typescript
-    version: 0.0.189
+    version: 0.0.197
     config:
       mode: client-v2
   - name: fernapi/fern-openapi

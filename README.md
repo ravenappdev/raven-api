@@ -2,7 +2,7 @@
 
 This repository contains:
 
-- [Fern API Definition](/fern/raven/definition/events.yml) of the Events API
+- [Fern Definition](/fern/raven/definition/) of the Devices, Events, and Users APIs
 - [Sample TypeScript app](./sample-ts-app/src/app.ts) consuming [generated TypeScript SDK](./sample-ts-app/package.json#L9)
 
 

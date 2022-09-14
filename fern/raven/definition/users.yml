@@ -12,51 +12,53 @@ services:
       endpoints:
       
         createOrUpdateRavenUser:
-          docs: Creates an AppUser if doesn't exist already, or updates user properties 
+          docs: Creates an AppUser if doesn't exist already, or updates user properties
           method: POST
           path: /{app_id}/users
           path-parameters:
             app_id: ids.AppId
           request: RavenUser
-          response: 
+          response:
             type: RavenUser
             docs: Returns updated or newly created user.
-          errors: 
+          errors:
             - ids.AppNotFoundError
 
         getUser:
           docs: Gets the requested user
-          method: GET 
+          method: GET
           path: /{app_id}/users/{user_id}
           path-parameters:
-            app_id: 
+            app_id:
               type: ids.AppId
               docs: your app identifier
-            user_id: 
+            user_id:
               type: ids.UserId
               docs: your user identifier
           response: RavenUser
-          errors: 
+          errors:
             - ids.AppNotFoundError
             - ids.UserNotFoundError
 
 types:
   RavenUser:
     properties:
-      user_id: 
-        type: ids.UserId 
-        docs: | 
+      user_id:
+        type: ids.UserId
+        docs: |
           Your user identifier. 
           if user_id already exists, user properties will be updated else a new user will be created
-      # Based on reading code in RavenUserControllerImpl.java it looks like 
+
+      # Based on reading code in RavenUserControllerImpl.java it looks like
       # user_sid should only be set by the server on user creation.
       # It may be better design to have a different request and response object for
-      # createOrUpdateRavenUser endpoint b/c the current API makes it feel like 
-      # user_sid can be modified on update.    
-      user_sid: optional<string> 
+      # createOrUpdateRavenUser endpoint b/c the current API makes it feel like
+      # user_sid can be modified on update.
+      user_sid: optional<string>
+
       onesignal_external_id: optional<string>
       mobile:
-        type: optional<string>  
+        type: optional<string>
       email:
         type: optional<string>
       whatsapp_mobile:
@@ -73,33 +75,34 @@ types:
       available_channels: optional<list<Channel>>
       devices: list<devices.Device>
       user_preferences: optional<UserPreferences>
-      # The created and updated at fields should only be modified by the server. 
-      # Adding these in the request body communicates that a user can modify these 
+
+      # The created and updated at fields should only be modified by the server.
+      # Adding these in the request body communicates that a user can modify these
       # properties. Another use case for different request / response types.
       created_at: optional<long>
       updated_at: optional<long>
 
-  SlackProfile: 
-    properties: 
+  SlackProfile:
+    properties:
       access_token: string
       email: string
       channel_id: string
-  
-  InAppProfile: 
-    properties: 
+
+  InAppProfile:
+    properties:
       last_open: string # string is a JDBC timestamp. format is yyyy-[m]m-[d]d hh:mm:ss[.f...]
 
-  TelegramProfile: 
-    properties: 
+  TelegramProfile:
+    properties:
       chat_id: string
-  
-  UserPreferences: 
-    properties: 
+
+  UserPreferences:
+    properties:
       preferred_channel: optional<Channel>
       channel_preferences: optional<ChannelPreferences>
-  
-  Channel: 
-    enum: 
+
+  Channel:
+    enum:
       - VOICE
       - PUSH
       - SMS
@@ -109,9 +112,9 @@ types:
       - SLACK
       - IN_APP
       - TELEGRAM
-  
-  ChannelPreferences: 
-    properties: 
+
+  ChannelPreferences:
+    properties:
       sms: optional<ChannelPreference>
       push: optional<ChannelPreference>
       whatsapp: optional<ChannelPreference>
@@ -120,7 +123,6 @@ types:
       voice: optional<ChannelPreference>
       teams: optional<ChannelPreference>
 
-  ChannelPreference: 
-    properties: 
+  ChannelPreference:
+    properties:
       disabled: boolean
-  

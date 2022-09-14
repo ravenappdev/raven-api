@@ -104,11 +104,13 @@ types:
       oppo_token: optional<string>
       vivo_token: optional<string>
       huaweiToken: optional<string> 
+      
       # Should this property be removed? 
       # Feels like there may be some internals leaked here.
       raven_id: 
         type: optional<string>
         docs: user id affiliated with device
+
       # 1) Same thought as User in users.yml. 
       #    Should the API have different Request/Response objects and device_sid would 
       #    only live on the response. 
@@ -117,11 +119,14 @@ types:
       # 3) In the users api, the client is responsible for creating identifiers. But,
       #    for devices, the server is doing the job. Why this inconsistency? 
       device_sid: optional<ids.DeviceId>
+
       notifications_disabled: optional<boolean>
+
       # Same thought as User in users.yml.
       # Should the API have different Request/Response objects and created_at and 
       # updated_at would only live on the response. 
       created_at: optional<long>
+
       updated_at: optional<long>
 
   Platform:
