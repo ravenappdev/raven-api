@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
 
 imports:
-  commons: commons.yml
+  ids: ids.yml
 
 services:
   http:
@@ -15,27 +15,32 @@ services:
           method: POST
           path: /{app_id}/events/send
           path-parameters:
-            app_id: commons.AppId
-          request: EventRequest
-          response: EventResponse
+            app_id: ids.AppId
+          request: SendEventRequest
+          response: SendEventResponse
           errors:
             - EventNotFoundError
+            - EventNotPublishedError
             
         sendBulkEvents:
           method: POST 
           path: /{app_id}/events/bulk_send
           path-parameters:
-            app_id: commons.AppId
-          request: BulkEventsRequest
+            app_id: ids.AppId
+          request: BulkSendEventRequest
+          response: SendEventResponse
+          errors:
+            - EventNotFoundError
+            - EventNotPublishedError
 
 types:
-  EventRequest:
+  SendEventRequest:
     properties:
       event:
         type: string
         docs: event name
       data:
-        type: unknown
+        type: map<string, unknown>
         docs: |
           {
           "param1" : "<value1>",
@@ -43,16 +48,141 @@ types:
           "param3" : object/array"
           }
       user:
-        type: optional<commons.User>
+        type: optional<User>
+      scheduleAt: 
+        type: optional<long>
+        docs: | 
+          Time to send message expressed as UTC milliseconds. 
+          If not present, message will be sent immediately.
       override:
-        type: optional<unknown>
-
-  EventResponse:
+        type: optional<EventOverride>
+  
+  User:
     properties:
-      request_id: commons.RequestId
+      user_id:
+        type: ids.UserId
+        docs: |
+          userId to send the notifications to. 
+          This is  your own user identifier which you have used to create user on Raven
+      email:
+        type: optional<string>
+      mobile:
+        type: optional<string>
+        docs: mobile with country code prefix (e.g +91)
+      whatsapp_mobile:
+        type: optional<string>
+        docs: |
+          mobile with country code prefix (e.g. +91).
+          if empty, `mobile` is considered for whatsapp
+      onesignal_external_id:
+        type: optional<string>
+        docs: "[OneSignal external user IDs](https://documentation.onesignal.com/docs/external-user-ids)"
+      fcm_tokens:
+        type: optional<list<string>>
+        docs: List of fcm tokens.  eg. ["<fcmtoken1", "<fcmtoken2>"]
+  
+  EventOverride: 
+    properties: 
+      email: optional<EmailOverride>
+      sms: optional<SmsOverride>
+      whatsapp: optional<WhatsappOverride>
+      push: optional<PushOverride>
+      webhook: optional<WebhookOverride>
+      voice: optional<VoiceOverride>
+      slack: optional<SlackOverride>
+      in_app: optional<InAppOverride>
+      telegram: optional<TelegramOverride>
+      providers: map<string, ProviderOverride>
+
+  ChannelOverride: 
+    properties: 
+      schedule_at: long
+
+  EmailRecipient: 
+    properties: 
+      name: string
+      address: string
+  
+  Attachment: 
+    properties: 
+      file_name: string
+      content: string
+      url: string
+  
+  EmailMessage: 
+    properties: 
+      text: string
+      html_body: string
+      subject: string
+  
+  EmailOverride: 
+    extends: ChannelOverride
+    properties:
+      from: EmailRecipient
+      cc: list<EmailRecipient>
+      bcc: list<EmailRecipient>
+      attachments: list<Attachment>
+      message: EmailMessage
+  
+  SmsMessage: 
+    properties: 
+      text: string
+  
+  SmsOverride: 
+    extends: ChannelOverride
+    properties: 
+      sender: string
+      message: SmsMessage
+  
+  WhatsappOverride: 
+    extends: ChannelOverride
+    properties: 
+      message: SmsMessage
+
+  PushOverride: 
+    extends: ChannelOverride
+  
+  WebhookOverride:
+    extends: ChannelOverride
+  
+  VoiceOverride:
+    extends: ChannelOverride
+  
+  SlackMessage: 
+    properties: 
+      text: string
+      blocks: unknown
+  
+  SlackOverride: 
+    extends: ChannelOverride
+    properties: 
+      message: SlackMessage
+  
+  InAppOverride: 
+    extends: ChannelOverride
+  
+  TelegramOverride: 
+    extends: ChannelOverride
+  
+  Param: 
+    properties: 
+      name: string
+      value: string
+
+  ProviderOverride: 
+    properties: 
+      payload: map<string, unknown>
+      form_params: list<Param>
+      query_params: list<Param>
+      path_params: list<Param>
+      headers: list<Param>
+
+  SendEventResponse:
+    properties:
+      id: ids.RequestId # docs say request_id, but SendRavenEventResponse.java has id
       success: boolean
 
-  BulkEventsRequest: 
+  BulkSendEventRequest: 
     properties:
       event: string 
       batch: list<BatchEvent>
@@ -60,7 +190,7 @@ types:
   BatchEvent:
     properties:
       data:
-        type: unknown
+        type: map<string, unknown>
         docs: |
           {
           "param1" : "<value1>",
@@ -68,9 +198,16 @@ types:
           "param3" : object/array"
           }
       user:
-        type: optional<commons.User>
+        type: optional<User>
+      override:
+        type: optional<EventOverride>
     
 errors:
   EventNotFoundError:
     http:
       statusCode: 404
+  EventNotPublishedError: 
+    http: 
+      statusCode: 400
+    docs: Event must be published before it can be sent
+  
