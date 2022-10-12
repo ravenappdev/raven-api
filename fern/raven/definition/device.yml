@@ -5,12 +5,13 @@ imports:
 
 services:
   http:
-    DevicesService:
+    DeviceService:
       auth: true
       base-path: /v1/apps
       endpoints:
-        addDevice:
-          docs: | 
+
+        add:
+          docs: |
             Add Device for a User. 
             If no device_sid is specified, then a new device will be created. 
             If a device_sid is specified, then devices will be merged if one is found.
@@ -24,15 +25,15 @@ services:
               type: ids.UserId
               docs: your user identifier
           request: Device
-          response: 
+          response:
             type: Device
             docs: Returns the updated Device
-          errors: 
+          errors:
             - ids.AppNotFoundError
             - ids.UserNotFoundError
 
-        updateDevice:
-          docs: Updates Device for a User
+        update:
+          docs: Update a Device for a User.
           method: PUT
           path: /{app_id}/users/{user_id}/devices/{device_id}
           path-parameters:
@@ -46,16 +47,16 @@ services:
               type: ids.DeviceId
               docs: your device identifier
           request: Device
-          response: 
+          response:
             type: Device
             docs: Returns the updated Device
-          errors: 
+          errors:
             - ids.AppNotFoundError
             - ids.UserNotFoundError
             - ids.DeviceNotFoundError
 
-        deleteDevice:
-          docs: Delete Device for a User
+        delete:
+          docs: Delete a Device for a User
           method: DELETE
           path: /{app_id}/users/{user_id}/devices/{device_id}
           path-parameters:
@@ -68,13 +69,13 @@ services:
             device_id:
               type: ids.DeviceId
               docs: your device identifier
-          errors: 
+          errors:
             - ids.AppNotFoundError
             - ids.UserNotFoundError
             - ids.DeviceNotFoundError
-        
-        getDevice: 
-          docs: Get Device for a User
+
+        get:
+          docs: Get a Device for a User
           method: GET
           path: /{app_id}/users/{user_id}/devices/{device_id}
           path-parameters:
@@ -88,12 +89,12 @@ services:
               type: ids.DeviceId
               docs: your device identifier
           response: Device
-          errors: 
+          errors:
             - ids.AppNotFoundError
             - ids.DeviceNotFoundError
 
 types:
-  
+
   Device:
     properties:
       id: optional<string>
@@ -103,15 +104,15 @@ types:
       xiaomi_token: optional<string>
       oppo_token: optional<string>
       vivo_token: optional<string>
-      huaweiToken: optional<string> 
-      
+      huaweiToken: optional<string>
+
       # Should this property be removed? 
       # Feels like there may be some internals leaked here.
-      raven_id: 
+      raven_id:
         type: optional<string>
         docs: user id affiliated with device
 
-      # 1) Same thought as User in users.yml. 
+      # 1) Same thought as User in user.yml. 
       #    Should the API have different Request/Response objects and device_sid would 
       #    only live on the response. 
       # 2) Based on the code in RavenUserDeviceControllerImpl.java it looks like 
@@ -122,7 +123,7 @@ types:
 
       notifications_disabled: optional<boolean>
 
-      # Same thought as User in users.yml.
+      # Same thought as User in user.yml.
       # Should the API have different Request/Response objects and created_at and 
       # updated_at would only live on the response. 
       created_at: optional<long>

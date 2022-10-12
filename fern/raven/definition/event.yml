@@ -5,12 +5,12 @@ imports:
 
 services:
   http:
-    EventsService:
+    EventService:
       auth: true
       base-path: /v1/apps
       endpoints:
 
-        sendEvent:
+        send:
           docs: This endpoint allows you to send messages
           method: POST
           path: /{app_id}/events/send
@@ -21,9 +21,9 @@ services:
           errors:
             - EventNotFoundError
             - EventNotPublishedError
-            
-        sendBulkEvents:
-          method: POST 
+
+        sendBulk:
+          method: POST
           path: /{app_id}/events/bulk_send
           path-parameters:
             app_id: ids.AppId
@@ -49,14 +49,14 @@ types:
           }
       user:
         type: optional<User>
-      scheduleAt: 
+      scheduleAt:
         type: optional<long>
-        docs: | 
+        docs: |
           Time to send message expressed as UTC milliseconds. 
           If not present, message will be sent immediately.
       override:
         type: optional<EventOverride>
-  
+
   User:
     properties:
       user_id:
@@ -76,13 +76,14 @@ types:
           if empty, `mobile` is considered for whatsapp
       onesignal_external_id:
         type: optional<string>
-        docs: "[OneSignal external user IDs](https://documentation.onesignal.com/docs/external-user-ids)"
+        docs: "[OneSignal external user
+          IDs](https://documentation.onesignal.com/docs/external-user-ids)"
       fcm_tokens:
         type: optional<list<string>>
         docs: List of fcm tokens.  eg. ["<fcmtoken1", "<fcmtoken2>"]
-  
-  EventOverride: 
-    properties: 
+
+  EventOverride:
+    properties:
       email: optional<EmailOverride>
       sms: optional<SmsOverride>
       whatsapp: optional<WhatsappOverride>
@@ -94,28 +95,28 @@ types:
       telegram: optional<TelegramOverride>
       providers: map<string, ProviderOverride>
 
-  ChannelOverride: 
-    properties: 
+  ChannelOverride:
+    properties:
       schedule_at: long
 
-  EmailRecipient: 
-    properties: 
+  EmailRecipient:
+    properties:
       name: string
       address: string
-  
-  Attachment: 
-    properties: 
+
+  Attachment:
+    properties:
       file_name: string
       content: string
       url: string
-  
-  EmailMessage: 
-    properties: 
+
+  EmailMessage:
+    properties:
       text: string
       html_body: string
       subject: string
-  
-  EmailOverride: 
+
+  EmailOverride:
     extends: ChannelOverride
     properties:
       from: EmailRecipient
@@ -123,54 +124,54 @@ types:
       bcc: list<EmailRecipient>
       attachments: list<Attachment>
       message: EmailMessage
-  
-  SmsMessage: 
-    properties: 
+
+  SmsMessage:
+    properties:
       text: string
-  
-  SmsOverride: 
+
+  SmsOverride:
     extends: ChannelOverride
-    properties: 
+    properties:
       sender: string
       message: SmsMessage
-  
-  WhatsappOverride: 
+
+  WhatsappOverride:
     extends: ChannelOverride
-    properties: 
+    properties:
       message: SmsMessage
 
-  PushOverride: 
+  PushOverride:
     extends: ChannelOverride
-  
+
   WebhookOverride:
     extends: ChannelOverride
-  
+
   VoiceOverride:
     extends: ChannelOverride
-  
-  SlackMessage: 
-    properties: 
+
+  SlackMessage:
+    properties:
       text: string
       blocks: unknown
-  
-  SlackOverride: 
+
+  SlackOverride:
     extends: ChannelOverride
-    properties: 
+    properties:
       message: SlackMessage
-  
-  InAppOverride: 
+
+  InAppOverride:
     extends: ChannelOverride
-  
-  TelegramOverride: 
+
+  TelegramOverride:
     extends: ChannelOverride
-  
-  Param: 
-    properties: 
+
+  Param:
+    properties:
       name: string
       value: string
 
-  ProviderOverride: 
-    properties: 
+  ProviderOverride:
+    properties:
       payload: map<string, unknown>
       form_params: list<Param>
       query_params: list<Param>
@@ -182,9 +183,9 @@ types:
       id: ids.RequestId # docs say request_id, but SendRavenEventResponse.java has id
       success: boolean
 
-  BulkSendEventRequest: 
+  BulkSendEventRequest:
     properties:
-      event: string 
+      event: string
       batch: list<BatchEvent>
 
   BatchEvent:
@@ -201,13 +202,12 @@ types:
         type: optional<User>
       override:
         type: optional<EventOverride>
-    
+
 errors:
   EventNotFoundError:
     http:
       statusCode: 404
-  EventNotPublishedError: 
-    http: 
+  EventNotPublishedError:
+    http:
       statusCode: 400
     docs: Event must be published before it can be sent
-  
