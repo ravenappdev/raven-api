@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true
+      "strict": true,
+      "target": "esnext",
+      "moduleResolution": "node",
+      "skipLibCheck": true,
+      "declaration": true,
+      "sourceMap": true,
+      "emitDeclarationOnly": true,
+      "esModuleInterop": true,
+      "noUncheckedIndexedAccess": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true
   }
 }
