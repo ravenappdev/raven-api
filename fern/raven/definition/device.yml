@@ -55,7 +55,8 @@ services:
             - ids.UserNotFoundError
             - ids.DeviceNotFoundError
 
-        delete:
+        # TODO change to delete https://github.com/fern-api/fern-typescript/issues/73
+        deleteDevice:
           docs: Delete a Device for a User
           method: DELETE
           path: /{app_id}/users/{user_id}/devices/{device_id}
@@ -74,7 +75,7 @@ services:
             - ids.UserNotFoundError
             - ids.DeviceNotFoundError
 
-        get:
+        getDevice:
           docs: Get a Device for a User
           method: GET
           path: /{app_id}/users/{user_id}/devices/{device_id}
@@ -132,6 +133,6 @@ types:
 
   Platform:
     enum:
-      - ANDROID
-      - WEB
-      - IOS
+      - android
+      - web
+      - ios

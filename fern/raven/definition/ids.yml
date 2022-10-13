@@ -6,11 +6,8 @@ types:
 
 errors:
   AppNotFoundError:
-    http:
-      statusCode: 404
+    status-code: 404
   UserNotFoundError:
-    http:
-      statusCode: 404
+    status-code: 404
   DeviceNotFoundError:
-    http:
-      statusCode: 404
+    status-code: 404

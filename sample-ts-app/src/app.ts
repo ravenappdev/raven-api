@@ -17,7 +17,6 @@ async function main() {
     _body: {
       platform: Platform.Ios,
       fcmToken: "qweKu7bdTZumJpzxUqqpxe",
-      // notificationsDisabled: false,
     }
   });
 

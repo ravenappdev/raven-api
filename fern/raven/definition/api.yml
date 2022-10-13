@@ -1,4 +1,4 @@
-name: raven
+name: api
 auth: AuthKey
 auth-schemes:
   AuthKey:

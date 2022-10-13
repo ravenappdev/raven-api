@@ -1,0 +1,650 @@
+{
+    "info": {
+        "name": "api",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+        {
+            "key": "origin",
+            "value": "http://localhost:8080",
+            "type": "string"
+        },
+        {
+            "key": "Authorization",
+            "value": "",
+            "type": "string"
+        }
+    ],
+    "item": [
+        {
+            "name": "DeviceService",
+            "item": [
+                {
+                    "name": "add",
+                    "request": {
+                        "description": "Add Device for a User. \nIf no device_sid is specified, then a new device will be created. \nIf a device_sid is specified, then devices will be merged if one is found.\n",
+                        "url": {
+                            "raw": "{{origin}}/v1/apps/:app_id/users/:user_id/devices",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "v1",
+                                "apps",
+                                ":app_id",
+                                "users",
+                                ":user_id",
+                                "devices"
+                            ],
+                            "query": []
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{Authorization}}",
+                                "type": "string"
+                            }
+                        ],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": \"example\",\n    \"platform\": \"android\",\n    \"onesignal_player_id\": \"example\",\n    \"fcm_token\": \"example\",\n    \"xiaomi_token\": \"example\",\n    \"oppo_token\": \"example\",\n    \"vivo_token\": \"example\",\n    \"huaweiToken\": \"example\",\n    \"raven_id\": \"example\",\n    \"device_sid\": \"example\",\n    \"notifications_disabled\": true,\n    \"created_at\": 10000000,\n    \"updated_at\": 10000000\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful add",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Add Device for a User. \nIf no device_sid is specified, then a new device will be created. \nIf a device_sid is specified, then devices will be merged if one is found.\n",
+                                "url": {
+                                    "raw": "{{origin}}/v1/apps/:app_id/users/:user_id/devices",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "v1",
+                                        "apps",
+                                        ":app_id",
+                                        "users",
+                                        ":user_id",
+                                        "devices"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "{{Authorization}}",
+                                        "type": "string"
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"id\": \"example\",\n    \"platform\": \"android\",\n    \"onesignal_player_id\": \"example\",\n    \"fcm_token\": \"example\",\n    \"xiaomi_token\": \"example\",\n    \"oppo_token\": \"example\",\n    \"vivo_token\": \"example\",\n    \"huaweiToken\": \"example\",\n    \"raven_id\": \"example\",\n    \"device_sid\": \"example\",\n    \"notifications_disabled\": true,\n    \"created_at\": 10000000,\n    \"updated_at\": 10000000\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "Returns the updated Device",
+                            "body": "{\n    \"id\": \"example\",\n    \"platform\": \"android\",\n    \"onesignal_player_id\": \"example\",\n    \"fcm_token\": \"example\",\n    \"xiaomi_token\": \"example\",\n    \"oppo_token\": \"example\",\n    \"vivo_token\": \"example\",\n    \"huaweiToken\": \"example\",\n    \"raven_id\": \"example\",\n    \"device_sid\": \"example\",\n    \"notifications_disabled\": true,\n    \"created_at\": 10000000,\n    \"updated_at\": 10000000\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "update",
+                    "request": {
+                        "description": "Update a Device for a User.",
+                        "url": {
+                            "raw": "{{origin}}/v1/apps/:app_id/users/:user_id/devices/:device_id",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "v1",
+                                "apps",
+                                ":app_id",
+                                "users",
+                                ":user_id",
+                                "devices",
+                                ":device_id"
+                            ],
+                            "query": []
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{Authorization}}",
+                                "type": "string"
+                            }
+                        ],
+                        "method": "PUT",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": \"example\",\n    \"platform\": \"android\",\n    \"onesignal_player_id\": \"example\",\n    \"fcm_token\": \"example\",\n    \"xiaomi_token\": \"example\",\n    \"oppo_token\": \"example\",\n    \"vivo_token\": \"example\",\n    \"huaweiToken\": \"example\",\n    \"raven_id\": \"example\",\n    \"device_sid\": \"example\",\n    \"notifications_disabled\": true,\n    \"created_at\": 10000000,\n    \"updated_at\": 10000000\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful update",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Update a Device for a User.",
+                                "url": {
+                                    "raw": "{{origin}}/v1/apps/:app_id/users/:user_id/devices/:device_id",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "v1",
+                                        "apps",
+                                        ":app_id",
+                                        "users",
+                                        ":user_id",
+                                        "devices",
+                                        ":device_id"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "{{Authorization}}",
+                                        "type": "string"
+                                    }
+                                ],
+                                "method": "PUT",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"id\": \"example\",\n    \"platform\": \"android\",\n    \"onesignal_player_id\": \"example\",\n    \"fcm_token\": \"example\",\n    \"xiaomi_token\": \"example\",\n    \"oppo_token\": \"example\",\n    \"vivo_token\": \"example\",\n    \"huaweiToken\": \"example\",\n    \"raven_id\": \"example\",\n    \"device_sid\": \"example\",\n    \"notifications_disabled\": true,\n    \"created_at\": 10000000,\n    \"updated_at\": 10000000\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "Returns the updated Device",
+                            "body": "{\n    \"id\": \"example\",\n    \"platform\": \"android\",\n    \"onesignal_player_id\": \"example\",\n    \"fcm_token\": \"example\",\n    \"xiaomi_token\": \"example\",\n    \"oppo_token\": \"example\",\n    \"vivo_token\": \"example\",\n    \"huaweiToken\": \"example\",\n    \"raven_id\": \"example\",\n    \"device_sid\": \"example\",\n    \"notifications_disabled\": true,\n    \"created_at\": 10000000,\n    \"updated_at\": 10000000\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "deleteDevice",
+                    "request": {
+                        "description": "Delete a Device for a User",
+                        "url": {
+                            "raw": "{{origin}}/v1/apps/:app_id/users/:user_id/devices/:device_id",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "v1",
+                                "apps",
+                                ":app_id",
+                                "users",
+                                ":user_id",
+                                "devices",
+                                ":device_id"
+                            ],
+                            "query": []
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{Authorization}}",
+                                "type": "string"
+                            }
+                        ],
+                        "method": "DELETE"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful deleteDevice",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Delete a Device for a User",
+                                "url": {
+                                    "raw": "{{origin}}/v1/apps/:app_id/users/:user_id/devices/:device_id",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "v1",
+                                        "apps",
+                                        ":app_id",
+                                        "users",
+                                        ":user_id",
+                                        "devices",
+                                        ":device_id"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "{{Authorization}}",
+                                        "type": "string"
+                                    }
+                                ],
+                                "method": "DELETE"
+                            },
+                            "body": "",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "getDevice",
+                    "request": {
+                        "description": "Get a Device for a User",
+                        "url": {
+                            "raw": "{{origin}}/v1/apps/:app_id/users/:user_id/devices/:device_id",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "v1",
+                                "apps",
+                                ":app_id",
+                                "users",
+                                ":user_id",
+                                "devices",
+                                ":device_id"
+                            ],
+                            "query": []
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{Authorization}}",
+                                "type": "string"
+                            }
+                        ],
+                        "method": "GET"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful getDevice",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Get a Device for a User",
+                                "url": {
+                                    "raw": "{{origin}}/v1/apps/:app_id/users/:user_id/devices/:device_id",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "v1",
+                                        "apps",
+                                        ":app_id",
+                                        "users",
+                                        ":user_id",
+                                        "devices",
+                                        ":device_id"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "{{Authorization}}",
+                                        "type": "string"
+                                    }
+                                ],
+                                "method": "GET"
+                            },
+                            "body": "{\n    \"id\": \"example\",\n    \"platform\": \"android\",\n    \"onesignal_player_id\": \"example\",\n    \"fcm_token\": \"example\",\n    \"xiaomi_token\": \"example\",\n    \"oppo_token\": \"example\",\n    \"vivo_token\": \"example\",\n    \"huaweiToken\": \"example\",\n    \"raven_id\": \"example\",\n    \"device_sid\": \"example\",\n    \"notifications_disabled\": true,\n    \"created_at\": 10000000,\n    \"updated_at\": 10000000\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "EventService",
+            "item": [
+                {
+                    "name": "send",
+                    "request": {
+                        "description": "This endpoint allows you to send messages",
+                        "url": {
+                            "raw": "{{origin}}/v1/apps/:app_id/events/send",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "v1",
+                                "apps",
+                                ":app_id",
+                                "events",
+                                "send"
+                            ],
+                            "query": []
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{Authorization}}",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Idempotency-Key",
+                                "description": "The API supports idempotency for safely retrying requests without accidentally performing the same operation twice. \nThis is useful when an API call is disrupted in transit and you do not receive a response.\nFor example, if a request to send event does not respond due to a network connection error, you can retry the request with the same idempotency key to guarantee that no more than one event is sent.\nAn idempotency key is a unique value generated by the client which the server uses to recognize subsequent retries of the same request. \nHow you create unique keys is up to you, but we suggest using V4 UUIDs, or another random string with enough entropy to avoid collisions. \nIdempotency keys can be up to 255 characters long.\n",
+                                "type": "text",
+                                "value": "\"example\""
+                            }
+                        ],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"event\": \"example\",\n    \"data\": {\n        \"example\": \"UNKNOWN\"\n    },\n    \"user\": {\n        \"user_id\": \"example\",\n        \"email\": \"example\",\n        \"mobile\": \"example\",\n        \"whatsapp_mobile\": \"example\",\n        \"onesignal_external_id\": \"example\",\n        \"fcm_tokens\": [\n            \"example\"\n        ]\n    },\n    \"scheduleAt\": 10000000,\n    \"override\": {\n        \"email\": {\n            \"from\": {\n                \"name\": \"example\",\n                \"address\": \"example\"\n            },\n            \"cc\": [\n                {\n                    \"name\": \"example\",\n                    \"address\": \"example\"\n                }\n            ],\n            \"bcc\": [\n                {\n                    \"name\": \"example\",\n                    \"address\": \"example\"\n                }\n            ],\n            \"attachments\": [\n                {\n                    \"file_name\": \"example\",\n                    \"content\": \"example\",\n                    \"url\": \"example\"\n                }\n            ],\n            \"message\": {\n                \"text\": \"example\",\n                \"html_body\": \"example\",\n                \"subject\": \"example\"\n            }\n        },\n        \"sms\": {\n            \"sender\": \"example\",\n            \"message\": {\n                \"text\": \"example\"\n            }\n        },\n        \"whatsapp\": {\n            \"message\": {\n                \"text\": \"example\"\n            }\n        },\n        \"push\": {},\n        \"webhook\": {},\n        \"voice\": {},\n        \"slack\": {\n            \"message\": {\n                \"text\": \"example\",\n                \"blocks\": \"UNKNOWN\"\n            }\n        },\n        \"in_app\": {},\n        \"telegram\": {},\n        \"providers\": {\n            \"example\": {\n                \"payload\": {\n                    \"example\": \"UNKNOWN\"\n                },\n                \"form_params\": [\n                    {\n                        \"name\": \"example\",\n                        \"value\": \"example\"\n                    }\n                ],\n                \"query_params\": [\n                    {\n                        \"name\": \"example\",\n                        \"value\": \"example\"\n                    }\n                ],\n                \"path_params\": [\n                    {\n                        \"name\": \"example\",\n                        \"value\": \"example\"\n                    }\n                ],\n                \"headers\": [\n                    {\n                        \"name\": \"example\",\n                        \"value\": \"example\"\n                    }\n                ]\n            }\n        }\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful send",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "This endpoint allows you to send messages",
+                                "url": {
+                                    "raw": "{{origin}}/v1/apps/:app_id/events/send",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "v1",
+                                        "apps",
+                                        ":app_id",
+                                        "events",
+                                        "send"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "{{Authorization}}",
+                                        "type": "string"
+                                    },
+                                    {
+                                        "key": "Idempotency-Key",
+                                        "description": "The API supports idempotency for safely retrying requests without accidentally performing the same operation twice. \nThis is useful when an API call is disrupted in transit and you do not receive a response.\nFor example, if a request to send event does not respond due to a network connection error, you can retry the request with the same idempotency key to guarantee that no more than one event is sent.\nAn idempotency key is a unique value generated by the client which the server uses to recognize subsequent retries of the same request. \nHow you create unique keys is up to you, but we suggest using V4 UUIDs, or another random string with enough entropy to avoid collisions. \nIdempotency keys can be up to 255 characters long.\n",
+                                        "type": "text",
+                                        "value": "\"example\""
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"event\": \"example\",\n    \"data\": {\n        \"example\": \"UNKNOWN\"\n    },\n    \"user\": {\n        \"user_id\": \"example\",\n        \"email\": \"example\",\n        \"mobile\": \"example\",\n        \"whatsapp_mobile\": \"example\",\n        \"onesignal_external_id\": \"example\",\n        \"fcm_tokens\": [\n            \"example\"\n        ]\n    },\n    \"scheduleAt\": 10000000,\n    \"override\": {\n        \"email\": {\n            \"from\": {\n                \"name\": \"example\",\n                \"address\": \"example\"\n            },\n            \"cc\": [\n                {\n                    \"name\": \"example\",\n                    \"address\": \"example\"\n                }\n            ],\n            \"bcc\": [\n                {\n                    \"name\": \"example\",\n                    \"address\": \"example\"\n                }\n            ],\n            \"attachments\": [\n                {\n                    \"file_name\": \"example\",\n                    \"content\": \"example\",\n                    \"url\": \"example\"\n                }\n            ],\n            \"message\": {\n                \"text\": \"example\",\n                \"html_body\": \"example\",\n                \"subject\": \"example\"\n            }\n        },\n        \"sms\": {\n            \"sender\": \"example\",\n            \"message\": {\n                \"text\": \"example\"\n            }\n        },\n        \"whatsapp\": {\n            \"message\": {\n                \"text\": \"example\"\n            }\n        },\n        \"push\": {},\n        \"webhook\": {},\n        \"voice\": {},\n        \"slack\": {\n            \"message\": {\n                \"text\": \"example\",\n                \"blocks\": \"UNKNOWN\"\n            }\n        },\n        \"in_app\": {},\n        \"telegram\": {},\n        \"providers\": {\n            \"example\": {\n                \"payload\": {\n                    \"example\": \"UNKNOWN\"\n                },\n                \"form_params\": [\n                    {\n                        \"name\": \"example\",\n                        \"value\": \"example\"\n                    }\n                ],\n                \"query_params\": [\n                    {\n                        \"name\": \"example\",\n                        \"value\": \"example\"\n                    }\n                ],\n                \"path_params\": [\n                    {\n                        \"name\": \"example\",\n                        \"value\": \"example\"\n                    }\n                ],\n                \"headers\": [\n                    {\n                        \"name\": \"example\",\n                        \"value\": \"example\"\n                    }\n                ]\n            }\n        }\n    }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "body": "{\n    \"id\": \"example\",\n    \"success\": true\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "sendBulk",
+                    "request": {
+                        "url": {
+                            "raw": "{{origin}}/v1/apps/:app_id/events/bulk_send",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "v1",
+                                "apps",
+                                ":app_id",
+                                "events",
+                                "bulk_send"
+                            ],
+                            "query": []
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{Authorization}}",
+                                "type": "string"
+                            },
+                            {
+                                "key": "Idempotency-Key",
+                                "description": "The API supports idempotency for safely retrying requests without accidentally performing the same operation twice. \nThis is useful when an API call is disrupted in transit and you do not receive a response.\nFor example, if a request to send event does not respond due to a network connection error, you can retry the request with the same idempotency key to guarantee that no more than one event is sent.\nAn idempotency key is a unique value generated by the client which the server uses to recognize subsequent retries of the same request. \nHow you create unique keys is up to you, but we suggest using V4 UUIDs, or another random string with enough entropy to avoid collisions. \nIdempotency keys can be up to 255 characters long.\n",
+                                "type": "text",
+                                "value": "\"example\""
+                            }
+                        ],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"event\": \"example\",\n    \"batch\": [\n        {\n            \"data\": {\n                \"example\": \"UNKNOWN\"\n            },\n            \"user\": {\n                \"user_id\": \"example\",\n                \"email\": \"example\",\n                \"mobile\": \"example\",\n                \"whatsapp_mobile\": \"example\",\n                \"onesignal_external_id\": \"example\",\n                \"fcm_tokens\": [\n                    \"example\"\n                ]\n            },\n            \"override\": {\n                \"email\": {\n                    \"from\": {\n                        \"name\": \"example\",\n                        \"address\": \"example\"\n                    },\n                    \"cc\": [\n                        {\n                            \"name\": \"example\",\n                            \"address\": \"example\"\n                        }\n                    ],\n                    \"bcc\": [\n                        {\n                            \"name\": \"example\",\n                            \"address\": \"example\"\n                        }\n                    ],\n                    \"attachments\": [\n                        {\n                            \"file_name\": \"example\",\n                            \"content\": \"example\",\n                            \"url\": \"example\"\n                        }\n                    ],\n                    \"message\": {\n                        \"text\": \"example\",\n                        \"html_body\": \"example\",\n                        \"subject\": \"example\"\n                    }\n                },\n                \"sms\": {\n                    \"sender\": \"example\",\n                    \"message\": {\n                        \"text\": \"example\"\n                    }\n                },\n                \"whatsapp\": {\n                    \"message\": {\n                        \"text\": \"example\"\n                    }\n                },\n                \"push\": {},\n                \"webhook\": {},\n                \"voice\": {},\n                \"slack\": {\n                    \"message\": {\n                        \"text\": \"example\",\n                        \"blocks\": \"UNKNOWN\"\n                    }\n                },\n                \"in_app\": {},\n                \"telegram\": {},\n                \"providers\": {\n                    \"example\": {\n                        \"payload\": {\n                            \"example\": \"UNKNOWN\"\n                        },\n                        \"form_params\": [\n                            {\n                                \"name\": \"example\",\n                                \"value\": \"example\"\n                            }\n                        ],\n                        \"query_params\": [\n                            {\n                                \"name\": \"example\",\n                                \"value\": \"example\"\n                            }\n                        ],\n                        \"path_params\": [\n                            {\n                                \"name\": \"example\",\n                                \"value\": \"example\"\n                            }\n                        ],\n                        \"headers\": [\n                            {\n                                \"name\": \"example\",\n                                \"value\": \"example\"\n                            }\n                        ]\n                    }\n                }\n            }\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful sendBulk",
+                            "code": 200,
+                            "originalRequest": {
+                                "url": {
+                                    "raw": "{{origin}}/v1/apps/:app_id/events/bulk_send",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "v1",
+                                        "apps",
+                                        ":app_id",
+                                        "events",
+                                        "bulk_send"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "{{Authorization}}",
+                                        "type": "string"
+                                    },
+                                    {
+                                        "key": "Idempotency-Key",
+                                        "description": "The API supports idempotency for safely retrying requests without accidentally performing the same operation twice. \nThis is useful when an API call is disrupted in transit and you do not receive a response.\nFor example, if a request to send event does not respond due to a network connection error, you can retry the request with the same idempotency key to guarantee that no more than one event is sent.\nAn idempotency key is a unique value generated by the client which the server uses to recognize subsequent retries of the same request. \nHow you create unique keys is up to you, but we suggest using V4 UUIDs, or another random string with enough entropy to avoid collisions. \nIdempotency keys can be up to 255 characters long.\n",
+                                        "type": "text",
+                                        "value": "\"example\""
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"event\": \"example\",\n    \"batch\": [\n        {\n            \"data\": {\n                \"example\": \"UNKNOWN\"\n            },\n            \"user\": {\n                \"user_id\": \"example\",\n                \"email\": \"example\",\n                \"mobile\": \"example\",\n                \"whatsapp_mobile\": \"example\",\n                \"onesignal_external_id\": \"example\",\n                \"fcm_tokens\": [\n                    \"example\"\n                ]\n            },\n            \"override\": {\n                \"email\": {\n                    \"from\": {\n                        \"name\": \"example\",\n                        \"address\": \"example\"\n                    },\n                    \"cc\": [\n                        {\n                            \"name\": \"example\",\n                            \"address\": \"example\"\n                        }\n                    ],\n                    \"bcc\": [\n                        {\n                            \"name\": \"example\",\n                            \"address\": \"example\"\n                        }\n                    ],\n                    \"attachments\": [\n                        {\n                            \"file_name\": \"example\",\n                            \"content\": \"example\",\n                            \"url\": \"example\"\n                        }\n                    ],\n                    \"message\": {\n                        \"text\": \"example\",\n                        \"html_body\": \"example\",\n                        \"subject\": \"example\"\n                    }\n                },\n                \"sms\": {\n                    \"sender\": \"example\",\n                    \"message\": {\n                        \"text\": \"example\"\n                    }\n                },\n                \"whatsapp\": {\n                    \"message\": {\n                        \"text\": \"example\"\n                    }\n                },\n                \"push\": {},\n                \"webhook\": {},\n                \"voice\": {},\n                \"slack\": {\n                    \"message\": {\n                        \"text\": \"example\",\n                        \"blocks\": \"UNKNOWN\"\n                    }\n                },\n                \"in_app\": {},\n                \"telegram\": {},\n                \"providers\": {\n                    \"example\": {\n                        \"payload\": {\n                            \"example\": \"UNKNOWN\"\n                        },\n                        \"form_params\": [\n                            {\n                                \"name\": \"example\",\n                                \"value\": \"example\"\n                            }\n                        ],\n                        \"query_params\": [\n                            {\n                                \"name\": \"example\",\n                                \"value\": \"example\"\n                            }\n                        ],\n                        \"path_params\": [\n                            {\n                                \"name\": \"example\",\n                                \"value\": \"example\"\n                            }\n                        ],\n                        \"headers\": [\n                            {\n                                \"name\": \"example\",\n                                \"value\": \"example\"\n                            }\n                        ]\n                    }\n                }\n            }\n        }\n    ]\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "body": "{\n    \"id\": \"example\",\n    \"success\": true\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "UserService",
+            "item": [
+                {
+                    "name": "createOrUpdate",
+                    "request": {
+                        "description": "Creates an AppUser if doesn't exist already, or updates user properties",
+                        "url": {
+                            "raw": "{{origin}}/v1/apps/:app_id/users",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "v1",
+                                "apps",
+                                ":app_id",
+                                "users"
+                            ],
+                            "query": []
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{Authorization}}",
+                                "type": "string"
+                            }
+                        ],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"user_id\": \"example\",\n    \"user_sid\": \"example\",\n    \"onesignal_external_id\": \"example\",\n    \"mobile\": \"example\",\n    \"email\": \"example\",\n    \"whatsapp_mobile\": \"example\",\n    \"fcm_topic\": [\n        \"example\"\n    ],\n    \"fcm_device_group\": [\n        \"example\"\n    ],\n    \"slack\": {\n        \"access_token\": \"example\",\n        \"email\": \"example\",\n        \"channel_id\": \"example\"\n    },\n    \"in_app\": {\n        \"last_open\": \"example\"\n    },\n    \"telegram\": {\n        \"chat_id\": \"example\"\n    },\n    \"fcm_tokens\": [\n        \"example\"\n    ],\n    \"onesignal_player_ids\": [\n        \"example\"\n    ],\n    \"ios_tokens\": [\n        \"example\"\n    ],\n    \"available_channels\": [\n        \"VOICE\"\n    ],\n    \"devices\": [\n        {\n            \"id\": \"example\",\n            \"platform\": \"android\",\n            \"onesignal_player_id\": \"example\",\n            \"fcm_token\": \"example\",\n            \"xiaomi_token\": \"example\",\n            \"oppo_token\": \"example\",\n            \"vivo_token\": \"example\",\n            \"huaweiToken\": \"example\",\n            \"raven_id\": \"example\",\n            \"device_sid\": \"example\",\n            \"notifications_disabled\": true,\n            \"created_at\": 10000000,\n            \"updated_at\": 10000000\n        }\n    ],\n    \"user_preferences\": {\n        \"preferred_channel\": \"VOICE\",\n        \"channel_preferences\": {\n            \"sms\": {\n                \"disabled\": true\n            },\n            \"push\": {\n                \"disabled\": true\n            },\n            \"whatsapp\": {\n                \"disabled\": true\n            },\n            \"email\": {\n                \"disabled\": true\n            },\n            \"slack\": {\n                \"disabled\": true\n            },\n            \"voice\": {\n                \"disabled\": true\n            },\n            \"teams\": {\n                \"disabled\": true\n            }\n        }\n    },\n    \"created_at\": 10000000,\n    \"updated_at\": 10000000\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Successful createOrUpdate",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Creates an AppUser if doesn't exist already, or updates user properties",
+                                "url": {
+                                    "raw": "{{origin}}/v1/apps/:app_id/users",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "v1",
+                                        "apps",
+                                        ":app_id",
+                                        "users"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "{{Authorization}}",
+                                        "type": "string"
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"user_id\": \"example\",\n    \"user_sid\": \"example\",\n    \"onesignal_external_id\": \"example\",\n    \"mobile\": \"example\",\n    \"email\": \"example\",\n    \"whatsapp_mobile\": \"example\",\n    \"fcm_topic\": [\n        \"example\"\n    ],\n    \"fcm_device_group\": [\n        \"example\"\n    ],\n    \"slack\": {\n        \"access_token\": \"example\",\n        \"email\": \"example\",\n        \"channel_id\": \"example\"\n    },\n    \"in_app\": {\n        \"last_open\": \"example\"\n    },\n    \"telegram\": {\n        \"chat_id\": \"example\"\n    },\n    \"fcm_tokens\": [\n        \"example\"\n    ],\n    \"onesignal_player_ids\": [\n        \"example\"\n    ],\n    \"ios_tokens\": [\n        \"example\"\n    ],\n    \"available_channels\": [\n        \"VOICE\"\n    ],\n    \"devices\": [\n        {\n            \"id\": \"example\",\n            \"platform\": \"android\",\n            \"onesignal_player_id\": \"example\",\n            \"fcm_token\": \"example\",\n            \"xiaomi_token\": \"example\",\n            \"oppo_token\": \"example\",\n            \"vivo_token\": \"example\",\n            \"huaweiToken\": \"example\",\n            \"raven_id\": \"example\",\n            \"device_sid\": \"example\",\n            \"notifications_disabled\": true,\n            \"created_at\": 10000000,\n            \"updated_at\": 10000000\n        }\n    ],\n    \"user_preferences\": {\n        \"preferred_channel\": \"VOICE\",\n        \"channel_preferences\": {\n            \"sms\": {\n                \"disabled\": true\n            },\n            \"push\": {\n                \"disabled\": true\n            },\n            \"whatsapp\": {\n                \"disabled\": true\n            },\n            \"email\": {\n                \"disabled\": true\n            },\n            \"slack\": {\n                \"disabled\": true\n            },\n            \"voice\": {\n                \"disabled\": true\n            },\n            \"teams\": {\n                \"disabled\": true\n            }\n        }\n    },\n    \"created_at\": 10000000,\n    \"updated_at\": 10000000\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "description": "Returns updated or newly created user.",
+                            "body": "{\n    \"user_id\": \"example\",\n    \"user_sid\": \"example\",\n    \"onesignal_external_id\": \"example\",\n    \"mobile\": \"example\",\n    \"email\": \"example\",\n    \"whatsapp_mobile\": \"example\",\n    \"fcm_topic\": [\n        \"example\"\n    ],\n    \"fcm_device_group\": [\n        \"example\"\n    ],\n    \"slack\": {\n        \"access_token\": \"example\",\n        \"email\": \"example\",\n        \"channel_id\": \"example\"\n    },\n    \"in_app\": {\n        \"last_open\": \"example\"\n    },\n    \"telegram\": {\n        \"chat_id\": \"example\"\n    },\n    \"fcm_tokens\": [\n        \"example\"\n    ],\n    \"onesignal_player_ids\": [\n        \"example\"\n    ],\n    \"ios_tokens\": [\n        \"example\"\n    ],\n    \"available_channels\": [\n        \"VOICE\"\n    ],\n    \"devices\": [\n        {\n            \"id\": \"example\",\n            \"platform\": \"android\",\n            \"onesignal_player_id\": \"example\",\n            \"fcm_token\": \"example\",\n            \"xiaomi_token\": \"example\",\n            \"oppo_token\": \"example\",\n            \"vivo_token\": \"example\",\n            \"huaweiToken\": \"example\",\n            \"raven_id\": \"example\",\n            \"device_sid\": \"example\",\n            \"notifications_disabled\": true,\n            \"created_at\": 10000000,\n            \"updated_at\": 10000000\n        }\n    ],\n    \"user_preferences\": {\n        \"preferred_channel\": \"VOICE\",\n        \"channel_preferences\": {\n            \"sms\": {\n                \"disabled\": true\n            },\n            \"push\": {\n                \"disabled\": true\n            },\n            \"whatsapp\": {\n                \"disabled\": true\n            },\n            \"email\": {\n                \"disabled\": true\n            },\n            \"slack\": {\n                \"disabled\": true\n            },\n            \"voice\": {\n                \"disabled\": true\n            },\n            \"teams\": {\n                \"disabled\": true\n            }\n        }\n    },\n    \"created_at\": 10000000,\n    \"updated_at\": 10000000\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                },
+                {
+                    "name": "get",
+                    "request": {
+                        "description": "Gets the requested user",
+                        "url": {
+                            "raw": "{{origin}}/v1/apps/:app_id/users/:user_id",
+                            "host": [
+                                "{{origin}}"
+                            ],
+                            "path": [
+                                "v1",
+                                "apps",
+                                ":app_id",
+                                "users",
+                                ":user_id"
+                            ],
+                            "query": []
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{Authorization}}",
+                                "type": "string"
+                            }
+                        ],
+                        "method": "GET"
+                    },
+                    "response": [
+                        {
+                            "name": "Successful get",
+                            "code": 200,
+                            "originalRequest": {
+                                "description": "Gets the requested user",
+                                "url": {
+                                    "raw": "{{origin}}/v1/apps/:app_id/users/:user_id",
+                                    "host": [
+                                        "{{origin}}"
+                                    ],
+                                    "path": [
+                                        "v1",
+                                        "apps",
+                                        ":app_id",
+                                        "users",
+                                        ":user_id"
+                                    ],
+                                    "query": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "{{Authorization}}",
+                                        "type": "string"
+                                    }
+                                ],
+                                "method": "GET"
+                            },
+                            "body": "{\n    \"user_id\": \"example\",\n    \"user_sid\": \"example\",\n    \"onesignal_external_id\": \"example\",\n    \"mobile\": \"example\",\n    \"email\": \"example\",\n    \"whatsapp_mobile\": \"example\",\n    \"fcm_topic\": [\n        \"example\"\n    ],\n    \"fcm_device_group\": [\n        \"example\"\n    ],\n    \"slack\": {\n        \"access_token\": \"example\",\n        \"email\": \"example\",\n        \"channel_id\": \"example\"\n    },\n    \"in_app\": {\n        \"last_open\": \"example\"\n    },\n    \"telegram\": {\n        \"chat_id\": \"example\"\n    },\n    \"fcm_tokens\": [\n        \"example\"\n    ],\n    \"onesignal_player_ids\": [\n        \"example\"\n    ],\n    \"ios_tokens\": [\n        \"example\"\n    ],\n    \"available_channels\": [\n        \"VOICE\"\n    ],\n    \"devices\": [\n        {\n            \"id\": \"example\",\n            \"platform\": \"android\",\n            \"onesignal_player_id\": \"example\",\n            \"fcm_token\": \"example\",\n            \"xiaomi_token\": \"example\",\n            \"oppo_token\": \"example\",\n            \"vivo_token\": \"example\",\n            \"huaweiToken\": \"example\",\n            \"raven_id\": \"example\",\n            \"device_sid\": \"example\",\n            \"notifications_disabled\": true,\n            \"created_at\": 10000000,\n            \"updated_at\": 10000000\n        }\n    ],\n    \"user_preferences\": {\n        \"preferred_channel\": \"VOICE\",\n        \"channel_preferences\": {\n            \"sms\": {\n                \"disabled\": true\n            },\n            \"push\": {\n                \"disabled\": true\n            },\n            \"whatsapp\": {\n                \"disabled\": true\n            },\n            \"email\": {\n                \"disabled\": true\n            },\n            \"slack\": {\n                \"disabled\": true\n            },\n            \"voice\": {\n                \"disabled\": true\n            },\n            \"teams\": {\n                \"disabled\": true\n            }\n        }\n    },\n    \"created_at\": 10000000,\n    \"updated_at\": 10000000\n}",
+                            "_postman_previewlanguage": "json"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
