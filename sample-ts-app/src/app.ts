@@ -1,30 +1,62 @@
-import { Raven } from "@raven-fern/raven-client-v2";
+import { RavenApi } from "@raven-fern/api-client";
 
-const ravenClient = new Raven.Client({
-  _origin: "https://api.ravenapp.dev"
-});
+void main();
 
-const response = await ravenClient.devices.getDevice({
-  deviceId: "12345678",
-  appId: "12345678",
-  userId: "12345678"
-});
+async function main() {
+  const ravenClient = new RavenApi.Client({
+    _origin: "https://api.ravenapp.dev",
+    authorization: "AuthKey Pf8t1HiM2ZJyisSVjUbesGveypdQHxmKrg6XVBDeD30="
+  });
 
-if (response.ok) {
-  console.log("The Xiaomi Token is:", response.body.xiaomi_token)
-} else {
-  response.error._visit({
-    appNotFoundError: () => {
-      console.error("App not found.")
-    },
-    deviceNotFoundError: () => {
-      console.error("Device not found.")
-    },
-    _network: () => {
-      console.error("Are you sure you're connected to the internet?")
-    },
-    _unknown: () => {
-      console.error("Received unknown error.", response.error.body)
+  const response = await ravenClient.event.sendBulk({
+    appId: "67854f33-1686-4dd2-9a4a-2fe442ffbda4",
+    _body:
+    {
+      event: "myFirstEvent",
+      batch: [{
+        user: {
+          userId: "Danny"
+        },
+        data: {
+          "colleagues": "Srivastava"
+        },
+      },
+      {
+        user: {
+          userId: "Zach"
+        },
+        data: {
+          "colleagues": "Srivastava"
+        },
+      },
+      {
+        user: {
+          userId: "Deep"
+        },
+        data: {
+          "colleagues": "Srivastava"
+        },
+      }
+      ]
     }
-  })
+  }
+  );
+
+  if (response.ok) {
+    console.log()
+  }
+
+  else {
+    console.log(response.error)
+  }
 }
+
+
+  // const response = await ravenClient.user.createOrUpdate({
+  //   appId: "67854f33-1686-4dd2-9a4a-2fe442ffbda4",
+  //   _body: {
+  //     userId: "Danny",
+  //     email: "danny+raven@buildwithfern.com",
+  //     mobile: "+12162807200"
+  //   }
+  // })

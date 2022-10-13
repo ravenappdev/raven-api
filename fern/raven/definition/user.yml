@@ -2,29 +2,29 @@
 
 imports:
   ids: ids.yml
-  devices: devices.yml
+  device: device.yml
 
 services:
   http:
-    UsersService:
+    UserService:
       auth: true
       base-path: /v1/apps
       endpoints:
-      
-        createOrUpdateRavenUser:
+
+        createOrUpdate:
           docs: Creates an AppUser if doesn't exist already, or updates user properties
           method: POST
           path: /{app_id}/users
           path-parameters:
             app_id: ids.AppId
-          request: RavenUser
+          request: CreateUserRequest
           response:
             type: RavenUser
             docs: Returns updated or newly created user.
           errors:
             - ids.AppNotFoundError
 
-        getUser:
+        get:
           docs: Gets the requested user
           method: GET
           path: /{app_id}/users/{user_id}
@@ -41,18 +41,31 @@ services:
             - ids.UserNotFoundError
 
 types:
+  CreateUserRequest: 
+    properties:
+      user_id:
+        type: ids.UserId
+        docs: |
+          Your user identifier. 
+            if user_id already exists, user properties will be updated else a new user will be created
+      mobile: optional<string>
+      email: optional<string>
+      whats_app:
+        type: optional<string>
+        docs: include this only when user's whatsapp mobile is different than primary mobile
+
   RavenUser:
     properties:
       user_id:
         type: ids.UserId
         docs: |
           Your user identifier. 
-          if user_id already exists, user properties will be updated else a new user will be created
+            if user_id already exists, user properties will be updated else a new user will be created
 
       # Based on reading code in RavenUserControllerImpl.java it looks like
       # user_sid should only be set by the server on user creation.
       # It may be better design to have a different request and response object for
-      # createOrUpdateRavenUser endpoint b/c the current API makes it feel like
+      # createOrUpdate endpoint b/c the current API makes it feel like
       # user_sid can be modified on update.
       user_sid: optional<string>
 
@@ -63,7 +76,8 @@ types:
         type: optional<string>
       whatsapp_mobile:
         type: optional<string>
-        docs: Include this only when user's whatsapp mobile is different than primary mobile
+        docs: Include this only when user's whatsapp mobile is different than primary
+          mobile
       fcm_topic: optional<list<string>>
       fcm_device_group: optional<list<string>>
       slack: optional<SlackProfile>
@@ -73,7 +87,7 @@ types:
       onesignal_player_ids: optional<list<string>>
       ios_tokens: optional<list<string>>
       available_channels: optional<list<Channel>>
-      devices: list<devices.Device>
+      devices: list<device.Device>
       user_preferences: optional<UserPreferences>
 
       # The created and updated at fields should only be modified by the server.
