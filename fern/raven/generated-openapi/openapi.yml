@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: api
-  version: 0.0.4
+  version: 0.0.6
 paths:
   /v1/apps/{app_id}/users/{user_id}/devices:
     post:
@@ -266,7 +266,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserRavenUser'
+              $ref: '#/components/schemas/UserCreateUserRequest'
   /v1/apps/{app_id}/users/{user_id}:
     get:
       description: Gets the requested user
@@ -671,6 +671,25 @@ components:
       type: string
     IdsDeviceId:
       type: string
+    UserCreateUserRequest:
+      type: object
+      properties:
+        user_id:
+          $ref: '#/components/schemas/IdsUserId'
+          description: |
+            Your user identifier. 
+              if user_id already exists, user properties will be updated else a new user will be created
+        mobile:
+          type: string
+        email:
+          type: string
+        whats_app:
+          type: string
+          description: >-
+            include this only when user's whatsapp mobile is different than
+            primary mobile
+      required:
+        - user_id
     UserRavenUser:
       type: object
       properties:
