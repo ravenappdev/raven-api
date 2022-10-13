@@ -9,7 +9,6 @@ services:
       auth: true
       base-path: /v1/apps
       endpoints:
-
         add:
           docs: |
             Add Device for a User. 
@@ -45,7 +44,7 @@ services:
               docs: your user identifier
             device_id:
               type: ids.DeviceId
-              docs: your device identifier
+              docs: your device identifier; the same as device_sid
           request: Device
           response:
             type: Device
@@ -95,7 +94,6 @@ services:
             - ids.DeviceNotFoundError
 
 types:
-
   Device:
     properties:
       id: optional<string>
@@ -107,26 +105,26 @@ types:
       vivo_token: optional<string>
       huaweiToken: optional<string>
 
-      # Should this property be removed? 
+      # Should this property be removed?
       # Feels like there may be some internals leaked here.
       raven_id:
         type: optional<string>
         docs: user id affiliated with device
 
-      # 1) Same thought as User in user.yml. 
-      #    Should the API have different Request/Response objects and device_sid would 
-      #    only live on the response. 
-      # 2) Based on the code in RavenUserDeviceControllerImpl.java it looks like 
-      #    device_sid is used for querying (unlike for user it is user_id). 
+      # 1) Same thought as User in user.yml.
+      #    Should the API have different Request/Response objects and device_sid would
+      #    only live on the response.
+      # 2) Based on the code in RavenUserDeviceControllerImpl.java it looks like
+      #    device_sid is used for querying (unlike for user it is user_id).
       # 3) In the users api, the client is responsible for creating identifiers. But,
-      #    for devices, the server is doing the job. Why this inconsistency? 
+      #    for devices, the server is doing the job. Why this inconsistency?
       device_sid: optional<ids.DeviceId>
 
       notifications_disabled: optional<boolean>
 
       # Same thought as User in user.yml.
-      # Should the API have different Request/Response objects and created_at and 
-      # updated_at would only live on the response. 
+      # Should the API have different Request/Response objects and created_at and
+      # updated_at would only live on the response.
       created_at: optional<long>
 
       updated_at: optional<long>

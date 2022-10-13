@@ -1,5 +1,4 @@
 import { RavenApi } from "@raven-fern/api-client";
-import { Platform } from "@raven-fern/api-client/api";
 
 void main();
 
@@ -9,14 +8,14 @@ async function main() {
     authorization: "AuthKey Pf8t1HiM2ZJyisSVjUbesGveypdQHxmKrg6XVBDeD30="
   });
 
-  const response = await ravenClient.device.add({
+  const response = await ravenClient.device.update({
     /** your app identifier */
     appId: "67854f33-1686-4dd2-9a4a-2fe442ffbda4",
     /** your user identifier */
     userId: "danny-test-user",
+    deviceId: "ce2421fd-3987-4daf-85ac-74426aa3a080",
     _body: {
-      platform: Platform.Ios,
-      fcmToken: "qweKu7bdTZumJpzxUqqpxe",
+      notificationsDisabled: true
     }
   });
 
