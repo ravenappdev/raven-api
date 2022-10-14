@@ -196,7 +196,9 @@ types:
   BulkSendEventRequest:
     properties:
       event: string
-      batch: list<BatchEvent>
+      batch: 
+        type: list<BatchEvent>
+        docs: List of events
 
   BatchEvent:
     properties:
