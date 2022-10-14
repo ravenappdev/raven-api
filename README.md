@@ -25,7 +25,12 @@ fern check # Checks if definitions is valid
 
 ## What are Generators?
 
-Generators read in your API Definition and output files/code (i.e. the TypeScript SDK Generator). They are tracked in [generators.yml](./fern/api/generators.yml).
+Generators read in your API Definition and output files or code (i.e. the TypeScript SDK Generator) and are tracked in [generators.yml](./fern/api/generators.yml).
 
-Running `fern release <version>` will run all of the generators. This command runs in a GitHub workflow (see [ci.yml](.github/workflows/ci.yml#L31))
+To trigger the generators run:
 
+```bash
+fern release <version>
+```
+
+This command currently runs in a GitHub workflow (see [ci.yml](.github/workflows/ci.yml#L31))
