@@ -14,6 +14,6 @@ release:
     version: 0.0.208
     publishing:
       npm:
-        package-name: primer
+        package-name: raven
     github:
-      repository: fern-api/primer-node
+      repository: fern-api/raven-node
