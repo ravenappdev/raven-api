@@ -28,9 +28,6 @@ services:
             app_id: ids.AppId
           request: SendEventRequest
           response: SendEventResponse
-          errors:
-            - EventNotFoundError
-            - EventNotPublishedError
 
         sendBulk:
           method: POST
@@ -39,9 +36,6 @@ services:
             app_id: ids.AppId
           request: BulkSendEventRequest
           response: SendEventResponse
-          errors:
-            - EventNotFoundError
-            - EventNotPublishedError
 
 types:
   SendEventRequest:
@@ -214,10 +208,3 @@ types:
         type: optional<User>
       override:
         type: optional<EventOverride>
-
-errors:
-  EventNotFoundError:
-    status-code: 404
-  EventNotPublishedError:
-    docs: Event must be published before it can be sent
-    status-code: 400

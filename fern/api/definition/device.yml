@@ -27,9 +27,6 @@ services:
           response:
             type: Device
             docs: Returns the updated Device
-          errors:
-            - ids.AppNotFoundError
-            - ids.UserNotFoundError
 
         update:
           docs: Update a Device for a User.
@@ -49,10 +46,6 @@ services:
           response:
             type: Device
             docs: Returns the updated Device
-          errors:
-            - ids.AppNotFoundError
-            - ids.UserNotFoundError
-            - ids.DeviceNotFoundError
 
         deleteDevice:
           docs: Delete a Device for a User
@@ -68,10 +61,6 @@ services:
             device_id:
               type: ids.DeviceId
               docs: your device identifier
-          errors:
-            - ids.AppNotFoundError
-            - ids.UserNotFoundError
-            - ids.DeviceNotFoundError
 
         getDevice:
           docs: Get a Device for a User
@@ -88,9 +77,6 @@ services:
               type: ids.DeviceId
               docs: your device identifier
           response: Device
-          errors:
-            - ids.AppNotFoundError
-            - ids.DeviceNotFoundError
 
 types:
   Device:
