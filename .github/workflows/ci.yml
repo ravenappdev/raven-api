@@ -12,7 +12,7 @@ jobs:
         uses: npm install -g fern-api
 
       - name: Check Fern API is valid
-        run: npx fern-api check
+        run: fern check
   
   fern-release: 
     needs: fern-check
