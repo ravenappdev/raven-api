@@ -23,6 +23,9 @@ npm install -g fern-api # Installs CLI
 fern check # Checks if definitions is valid
 ```
 
-## Generators
+## What are Generators?
 
-Generators read in your API Definition and output files. They are tracked in [generators.yml](./fern/api/generators.yml).
+Generators read in your API Definition and output files/code (i.e. the TypeScript SDK Generator). They are tracked in [generators.yml](./fern/api/generators.yml).
+
+Running `fern release <version>` will run all of the generators. This command runs in a GitHub workflow (see [ci.yml](.github/workflows/ci.yml#L31))
+
