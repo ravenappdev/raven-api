@@ -1,0 +1,6 @@
+name: api
+auth: AuthKey
+auth-schemes:
+  AuthKey:
+    header: Authorization
+# origin: https://api.ravenapp.dev

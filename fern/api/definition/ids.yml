@@ -1,0 +1,13 @@
+types:
+  AppId: string
+  UserId: string
+  RequestId: string
+  DeviceId: string
+
+errors:
+  AppNotFoundError:
+    status-code: 404
+  UserNotFoundError:
+    status-code: 404
+  DeviceNotFoundError:
+    status-code: 404

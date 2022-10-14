@@ -1,0 +1,8 @@
+release:
+  - name: fernapi/fern-typescript-sdk
+    version: 0.0.208
+    publishing:
+      npm:
+        package-name: raven
+    github:
+      repository: fern-api/raven-node
