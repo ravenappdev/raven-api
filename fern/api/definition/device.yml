@@ -98,7 +98,7 @@ types:
       id: optional<string>
       platform: optional<Platform>
       onesignal_player_id: optional<string>
-      fcm_token: optional<string>
+      # fcm_token: optional<string>
       xiaomi_token: optional<string>
       oppo_token: optional<string>
       vivo_token: optional<string>
