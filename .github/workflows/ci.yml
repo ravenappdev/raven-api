@@ -1,14 +1,18 @@
-name: fern
-run-name: check
+name: ci
+
 on: [push]
+
 jobs:
-  Fern-Check:
+  fern-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: | 
-          npm install -g fern-api
-          fern check
+      
+      - name: Install Fern
+        run:  npm install -g fern-api
+
+      - name: Check Fern API is valid
+        run: fern check
 
 # name: ci
 
