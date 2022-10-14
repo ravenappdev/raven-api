@@ -1,8 +1,6 @@
 # Raven API
 
-This repository contains Raven's Fern API.
-
-Tagging a release will:
+Tagging a release on this repository will:
 
 - Update the [TypeScript SDK Github Repo]()
 - _More SDKs to come..._
