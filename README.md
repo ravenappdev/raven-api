@@ -40,7 +40,10 @@ The generators are invoked by running `fern release`. When you tag a release on 
 
 ## How do I make changes to the API?
 
-1. Edit the [API Definition](fern/api/definition) and make a PR
+1. Clone this repo
+1. Install fern: `npm install -g fern-api`
+1. Edit the [API Definition](fern/api/definition) 
+1. You can run `fern check` to check for issues
 1. Make a PR to this repo
 1. If checks pass, merge the PR in
 1. When you're ready to release new versions of your SDKs, just tag a release on this repo
