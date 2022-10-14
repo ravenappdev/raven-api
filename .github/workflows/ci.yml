@@ -28,4 +28,7 @@ jobs:
         run: npm install -g fern-api
 
       - name: Release SDKs
-        run: fern release ${{github.ref_name}} --log-level info
+        env:
+          FERN_NPM_TOKEN: ${{ secrets.FERN_NPM_TOKEN }}
+        run: fern release ${{github.ref_name}} --log-level debug
+        

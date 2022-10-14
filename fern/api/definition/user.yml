@@ -60,7 +60,7 @@ types:
         type: ids.UserId
         docs: |
           Your user identifier. 
-            if user_id already exists, user properties will be updated else a new user will be created
+          If user_id already exists, user properties will be updated else a new user will be created
       user_sid: optional<string>
       onesignal_external_id: optional<string>
       mobile:
@@ -69,8 +69,7 @@ types:
         type: optional<string>
       whatsapp_mobile:
         type: optional<string>
-        docs: Include this only when user's whatsapp mobile is different than primary
-          mobile
+        docs: Include this only when user's whatsapp mobile is different than primary mobile
       fcm_topic: optional<list<string>>
       fcm_device_group: optional<list<string>>
       slack: optional<SlackProfile>
