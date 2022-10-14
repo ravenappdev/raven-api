@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: api
-  version: 0.0.6
+  version: 0.0.7
 paths:
   /v1/apps/{app_id}/users/{user_id}/devices:
     post:
