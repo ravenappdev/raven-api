@@ -21,8 +21,6 @@ services:
           response:
             type: RavenUser
             docs: Returns updated or newly created user.
-          errors:
-            - ids.AppNotFoundError
 
         get:
           docs: Gets the requested user
@@ -36,9 +34,6 @@ services:
               type: ids.UserId
               docs: your user identifier
           response: RavenUser
-          errors:
-            - ids.AppNotFoundError
-            - ids.UserNotFoundError
 
 types:
   CreateUserRequest: 
