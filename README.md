@@ -1,40 +1,32 @@
-# Raven
+# Raven API
 
-This repository contains:
+This repository contains Raven's Fern API.
 
-- [Fern Definition](/fern/raven/definition/) of the Devices, Events, and Users APIs
-- [Sample TypeScript app](./sample-ts-app/src/app.ts) consuming [generated TypeScript SDK](./sample-ts-app/package.json#L9)
+Tagging a release will:
 
-## TypeScript Sample App
+- Update the [TypeScript SDK Github Repo]()
+- _More SDKs to come..._
 
-The core logic lives in [app.ts](./sample-ts-app/src/app.ts).
+## What is in this repository?
 
-> Fern provides the user with an easy way to instantiate a client,
+This repository contains
 
-```typescript
-const ravenClient = new Raven.Client({
-  _origin: "https://api.ravenapp.dev"
-});
-```
+- Raven's Fern API Definition which lives in the [definition](./fern/api/definition/) folder
+- Generators (see [generators.yml](./fern/api/generators.yml))
 
-> type safety when invoking different endpoints,
+## What is in the API Definition?
 
-```typescript
-const response = await ravenClient.devices.getDevice({
-  deviceId: "12345678",
-  appId: "12345678",
-  userId: "12345678"
-});
-```
+The API Definition contains information about what endpoints, types, and errors are used in the API.
 
-> and auto-complete.
+The definition is broken into smaller files such as [device.yml](fern/api/definition/device.yml) and [payment-method.yml](fern/api/definition/event.yml).
 
-![Autocomplete of client](autocomplete.png)
-
-**Run the sample app:**
+In order to make sure that the definition is valid, you can use the Fern CLI.
 
 ```bash
-cd sample-ts-app
-npm install
-npm run dev
+npm install -g fern-api # Installs CLI
+fern check # Checks if definitions is valid
 ```
+
+## Generators
+
+Generators read in your API Definition and output files. They are tracked in [generators.yml](./fern/api/generators.yml).

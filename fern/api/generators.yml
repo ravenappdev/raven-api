@@ -1,0 +1,8 @@
+release:
+  - name: fernapi/fern-typescript-sdk
+    version: 0.0.208
+    publishing:
+      npm:
+        package-name: primer
+    github:
+      repository: fern-api/primer-node
