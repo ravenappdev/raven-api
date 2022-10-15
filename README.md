@@ -2,7 +2,7 @@
 
 Tagging a release on this repository will generate and release new SDKs. Currently included SDKs:
 
-- JavaScript/TypeScript SDK: https://github.com/fern-api/raven-node
+- JavaScript/TypeScript SDK: https://github.com/ravenappdev/raven-node
 
 ## [tl;dr] How does it work?
 
@@ -34,7 +34,7 @@ A generator reads in your API Definition and outputs files. The generated files 
 
 The list of enabled generators is in [generators.yml](./fern/api/generators.yml).
 
-For example, the TypeScript generator creates the TypeScript SDK. Fern pushes the generated files to [raven-node](https://github.com/fern-api/raven-node) and tags a release on that repo. This triggers a GitHub action on the [raven-node](https://github.com/fern-api/raven-node) repo, which compiles and publishes the package to npm.
+For example, the TypeScript generator creates the TypeScript SDK. Fern pushes the generated files to [raven-node](https://github.com/ravenappdev/raven-node) and tags a release on that repo. This triggers a GitHub action on the [raven-node](https://github.com/ravenappdev/raven-node) repo, which compiles and publishes the package to npm.
 
 The generators are invoked by running `fern release`. When you tag a release on this repo, there's a [GitHub action](.github/workflows/ci.yml#L31) that runs `fern release`.
 
