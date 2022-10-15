@@ -3,7 +3,7 @@ release:
     version: 0.0.209
     publishing:
       npm:
-        package-name: "@ravenapp/raven-node"
+        package-name: "@ravenappdev/raven"
         token: ${RAVEN_NPM_TOKEN} # TODO: should use Raven's NPM Token
     github:
       repository: ravenappdev/raven-node
