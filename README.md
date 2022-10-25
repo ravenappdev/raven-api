@@ -4,7 +4,6 @@ Tagging a release on this repository will update the:
 
 - [TypeScript SDK Github Repo](https://github.com/ravenappdev/raven-node)
 - [Java SDK Github Repo](https://github.com/ravenappdev/raven-java)
-- [OpenAPI Description Github Repo](https://github.com/ravenappdev/raven-openapi)
 - _More SDKs to come..._
 
 ## What is in this repository?
