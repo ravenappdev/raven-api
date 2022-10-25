@@ -3,4 +3,6 @@ auth: AuthKey
 auth-schemes:
   AuthKey:
     header: Authorization
-# origin: https://api.ravenapp.dev
+environments:
+  Prod: https://api.ravenapp.dev
+default-environment: Prod
