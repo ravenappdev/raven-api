@@ -1,9 +1,18 @@
 release:
   - name: fernapi/fern-typescript-sdk
-    version: 0.0.209
+    version: 0.0.219
     publishing:
       npm:
-        package-name: "@fern-api/raven" # TODO: should be published under Raven's NPM org
+        package-name: '@fern-api/raven' # TODO: should be published under Raven's NPM org
         token: ${FERN_NPM_TOKEN} # TODO: should use Raven's NPM Token
     github:
-      repository: fern-api/raven-node
+      repository: ravenappdev/raven-node
+  - name: fernapi/fern-java-sdk
+    version: 0.0.121
+    publishing:
+      maven:
+        coordinate: io.github.fern-api:raven
+        username: ${FERN_MAVEN_USERNAME} # TODO: should be published under Raven's Maven account
+        password: ${FERN_MAVEN_TOKEN}
+    github:
+      repository: ravenappdev/raven-java

@@ -6,7 +6,8 @@ jobs:
   fern-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
       - name: Install Fern
         run:  npm install -g fern-api
@@ -19,16 +20,19 @@ jobs:
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
       
-      - name: Download fern
+      - name: Download Fern
         run: npm install -g fern-api
 
       - name: Release SDKs
         env:
           FERN_NPM_TOKEN: ${{ secrets.FERN_NPM_TOKEN }}
-        run: fern release ${{github.ref_name}} --log-level debug
+          FERN_MAVEN_USERNAME: ${{ secrets.FERN_MAVEN_USERNAME }}
+          FERN_MAVEN_TOKEN: ${{ secrets.FERN_MAVEN_TOKEN }}
+        run: fern release ${{ github.ref_name }} --log-level debug
         
