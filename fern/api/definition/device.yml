@@ -47,7 +47,7 @@ services:
             type: Device
             docs: Returns the updated Device
 
-        deleteDevice:
+        delete:
           docs: Delete a Device for a User
           method: DELETE
           path: /{app_id}/users/{user_id}/devices/{device_id}
