@@ -7,7 +7,7 @@ release:
         
         # TODO: add as an environment variable in Github Secrets
         # https://github.com/organizations/ravenappdev/settings/secrets/actions
-        token: ${RAVEN_NPM_TOKEN} 
+        token: ${FERN_NPM_TOKEN} 
         
     github:
       repository: ravenappdev/raven-node
@@ -16,8 +16,8 @@ release:
     publishing:
       maven:
         coordinate: io.github.fern-api:raven
-        username: ${RAVEN_MAVEN_USERNAME} # TODO: add as an environment variable in Github Secrets
-        password: ${RAVEN_MAVEN_TOKEN} # TODO: add as an environment variable in Github Secrets
+        username: ${FERN_MAVEN_USERNAME} # TODO: add as an environment variable in Github Secrets
+        password: ${FERN_MAVEN_TOKEN} # TODO: add as an environment variable in Github Secrets
     github:
       repository: ravenappdev/raven-java
   - name: fernapi/fern-openapi
