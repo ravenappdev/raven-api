@@ -4,10 +4,7 @@ release:
     publishing:
       npm:
         package-name: '@fern-api/raven' # TODO: change to Raven's NPM org
-        
-        # TODO: add as an environment variable in Github Secrets
-        # https://github.com/organizations/ravenappdev/settings/secrets/actions
-        token: ${FERN_NPM_TOKEN} 
+        token: ${RAVEN_NPM_TOKEN} 
         
     github:
       repository: ravenappdev/raven-node
@@ -15,9 +12,9 @@ release:
     version: 0.0.122
     publishing:
       maven:
-        coordinate: io.github.fern-api:raven
-        username: ${FERN_MAVEN_USERNAME} # TODO: add as an environment variable in Github Secrets
-        password: ${FERN_MAVEN_TOKEN} # TODO: add as an environment variable in Github Secrets
+        coordinate: dev.ravenapp:raven-java
+        username: ${RAVEN_MAVEN_USERNAME}
+        password: ${RAVEN_MAVEN_TOKEN}
     github:
       repository: ravenappdev/raven-java
   - name: fernapi/fern-openapi
