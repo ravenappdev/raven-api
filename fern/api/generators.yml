@@ -1,6 +1,6 @@
 release:
   - name: fernapi/fern-typescript-sdk
-    version: 0.0.224
+    version: 0.0.226
     publishing:
       npm:
         package-name: '@ravenapp/raven'
