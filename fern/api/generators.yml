@@ -9,7 +9,7 @@ release:
       repository: ravenappdev/raven-node
       
   - name: fernapi/fern-java-sdk
-    version: 0.0.123
+    version: 0.0.124
     publishing:
       maven:
         coordinate: dev.ravenapp:raven-java
