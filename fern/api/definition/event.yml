@@ -19,7 +19,6 @@ services:
             How you create unique keys is up to you, but we suggest using V4 UUIDs, or another random string with enough entropy to avoid collisions. 
             Idempotency keys can be up to 255 characters long.
       endpoints:
-
         send:
           docs: This endpoint allows you to send messages
           method: POST
@@ -64,7 +63,7 @@ types:
   User:
     properties:
       user_id:
-        type: ids.UserId
+        type: optional<ids.UserId>
         docs: |
           userId to send the notifications to. 
           This is  your own user identifier which you have used to create user on Raven
@@ -190,7 +189,7 @@ types:
   BulkSendEventRequest:
     properties:
       event: string
-      batch: 
+      batch:
         type: list<BatchEvent>
         docs: List of events
 
