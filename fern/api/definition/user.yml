@@ -65,7 +65,6 @@ types:
         type: optional<string>
         docs: Include this only when user's whatsapp mobile is different than primary mobile
       slack: optional<SlackProfile>
-      in_app: optional<InAppProfile>
       telegram: optional<TelegramProfile>
       fcm_tokens: optional<list<string>>
       onesignal_player_ids: optional<list<string>>
@@ -76,12 +75,8 @@ types:
   SlackProfile:
     properties:
       access_token: string
-      email: string
-      channel_id: string
-
-  InAppProfile:
-    properties:
-      last_open: string
+      email: optional<string>
+      channel_id: optional<string>
 
   TelegramProfile:
     properties:
