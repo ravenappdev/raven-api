@@ -2,6 +2,7 @@
 
 imports:
   ids: ids.yml
+  user: user.yml
 
 services:
   http:
@@ -19,7 +20,6 @@ services:
             How you create unique keys is up to you, but we suggest using V4 UUIDs, or another random string with enough entropy to avoid collisions. 
             Idempotency keys can be up to 255 characters long.
       endpoints:
-
         send:
           docs: This endpoint allows you to send messages
           method: POST
@@ -204,7 +204,7 @@ types:
   BulkSendEventRequest:
     properties:
       event: string
-      batch: 
+      batch:
         type: list<BatchEvent>
         docs: List of events
 
