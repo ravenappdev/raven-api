@@ -97,8 +97,6 @@ types:
         type: optional<string>
       fcm_device_group:
         type: optional<string>
-      in_app:
-        type: optional<user.InAppProfile>
 
   EventOverride:
     properties:
