@@ -10,7 +10,6 @@ services:
       auth: true
       base-path: /v1/apps
       endpoints:
-
         createOrUpdate:
           docs: Creates an AppUser if doesn't exist already, or updates user properties
           method: POST
@@ -36,7 +35,7 @@ services:
           response: RavenUser
 
 types:
-  CreateUserRequest: 
+  CreateUserRequest:
     properties:
       user_id:
         type: ids.UserId
@@ -65,17 +64,12 @@ types:
       whatsapp_mobile:
         type: optional<string>
         docs: Include this only when user's whatsapp mobile is different than primary mobile
-      fcm_topic: optional<list<string>>
-      fcm_device_group: optional<list<string>>
       slack: optional<SlackProfile>
       in_app: optional<InAppProfile>
       telegram: optional<TelegramProfile>
       fcm_tokens: optional<list<string>>
       onesignal_player_ids: optional<list<string>>
       ios_tokens: optional<list<string>>
-      available_channels: optional<list<Channel>>
-      devices: list<device.Device>
-      user_preferences: optional<UserPreferences>
       created_at: optional<long>
       updated_at: optional<long>
 
