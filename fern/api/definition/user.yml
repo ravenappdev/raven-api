@@ -75,8 +75,8 @@ types:
   SlackProfile:
     properties:
       access_token: string
-      email: string
-      channel_id: string
+      email: optional<string>
+      channel_id: optional<string>
 
   TelegramProfile:
     properties:

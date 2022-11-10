@@ -64,7 +64,7 @@ types:
   User:
     properties:
       user_id:
-        type: ids.UserId
+        type: optional<ids.UserId>
         docs: |
           userId to send the notifications to. 
           This is  your own user identifier which you have used to create user on Raven
