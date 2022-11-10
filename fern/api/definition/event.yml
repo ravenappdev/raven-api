@@ -82,9 +82,23 @@ types:
         type: optional<string>
         docs: "[OneSignal external user
           IDs](https://documentation.onesignal.com/docs/external-user-ids)"
+      onesignal_player_ids:
+        type: optional<list<string>>
       fcm_tokens:
         type: optional<list<string>>
         docs: List of fcm tokens.  eg. ["<fcmtoken1", "<fcmtoken2>"]
+      ios_tokens:
+        type: optional<list<string>>
+      slack:
+        type: optional<user.SlackProfile>
+      telegram:
+        type: optional<user.TelegramProfile>
+      fcm_topic:
+        type: optional<string>
+      fcm_device_group:
+        type: optional<string>
+      in_app:
+        type: optional<user.InAppProfile>
 
   EventOverride:
     properties:
