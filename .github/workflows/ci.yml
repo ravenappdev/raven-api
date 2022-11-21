@@ -29,12 +29,12 @@ jobs:
       - name: Download Fern
         run: npm install -g fern-api
 
-      - name: Release SDKs
+      - name: Release SDKs, OpenAPI Spec, Postman Collection
         env:
           RAVEN_NPM_TOKEN: ${{ secrets.RAVEN_NPM_TOKEN }}
           RAVEN_MAVEN_USERNAME: ${{ secrets.RAVEN_MAVEN_USERNAME }}
           RAVEN_MAVEN_TOKEN: ${{ secrets.RAVEN_MAVEN_TOKEN }}
           POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
           POSTMAN_WORKSPACE_ID: ${{ secrets.POSTMAN_WORKSPACE_ID }}
-        run: fern release ${{ github.ref_name }} --log-level debug
+        run: fern generate --group external --version ${{ github.ref_name }} --log-level debug
         
