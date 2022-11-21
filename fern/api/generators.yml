@@ -1,30 +1,32 @@
-release:
-  - name: fernapi/fern-typescript-sdk
-    version: 0.0.226
-    publishing:
-      npm:
-        package-name: '@ravenapp/raven'
-        token: ${RAVEN_NPM_TOKEN}
-    github:
-      repository: ravenappdev/raven-node
-  - name: fernapi/fern-java-sdk
-    version: 0.0.125
-    publishing:
-      maven:
-        coordinate: dev.ravenapp:raven-java
-        username: ${RAVEN_MAVEN_USERNAME}
-        password: ${RAVEN_MAVEN_TOKEN}
-    github:
-      repository: ravenappdev/raven-java
-  - name: fernapi/fern-openapi
-    version: 0.0.10
-    github:
-      repository: ravenappdev/raven-openapi
-  - name: fernapi/fern-postman
-    version: 0.0.28
-    publishing:
-      postman:
-        api-key: ${POSTMAN_API_KEY}
-        workspace-id: ${POSTMAN_WORKSPACE_ID}
-    github:
-      repository: ravenappdev/raven-postman
+groups:
+  external:
+    generators:
+      - name: fernapi/fern-typescript-sdk
+        version: 0.0.241
+        output:
+          location: npm
+          package-name: '@ravenapp/raven'
+          token: ${RAVEN_NPM_TOKEN}
+        github:
+          repository: ravenappdev/raven-node
+      - name: fernapi/fern-java-sdk
+        version: 0.0.127
+        output:
+          location: maven
+          coordinate: dev.ravenapp:raven-java
+          username: ${RAVEN_MAVEN_USERNAME}
+          password: ${RAVEN_MAVEN_TOKEN}
+        github:
+          repository: ravenappdev/raven-java
+      - name: fernapi/fern-openapi
+        version: 0.0.11
+        github:
+          repository: ravenappdev/raven-openapi
+      - name: fernapi/fern-postman
+        version: 0.0.28
+        output:
+          location: postman
+          api-key: ${POSTMAN_API_KEY}
+          workspace-id: ${POSTMAN_WORKSPACE_ID}
+        github:
+          repository: ravenappdev/raven-postman
