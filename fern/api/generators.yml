@@ -10,7 +10,7 @@ groups:
         github:
           repository: ravenappdev/raven-node
       - name: fernapi/fern-java-sdk
-        version: 0.0.125
+        version: 0.0.128
         output:
           location: maven
           coordinate: dev.ravenapp:raven-java
