@@ -33,14 +33,7 @@ services:
                 event:
                   type: string
                   docs: The name of the event
-                data:
-                  type: map<string, unknown>
-                  docs: |
-                    {
-                    "param1" : "<value1>",
-                    "param2" : "<value2>",
-                    "param3" : object/array"
-                    }
+                data: map<string, unknown>
                 user:
                   type: optional<User>
                 scheduleAt:

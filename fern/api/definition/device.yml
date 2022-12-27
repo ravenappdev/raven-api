@@ -23,27 +23,7 @@ services:
             user_id:
               type: ids.UserId
               docs: your user identifier
-          request:
-            name: AddDeviceRequest
-            body:
-              properties:
-                id: optional<string>
-                platform: optional<Platform>
-                onesignal_player_id: optional<string>
-                xiaomi_token: optional<string>
-                oppo_token: optional<string>
-                vivo_token: optional<string>
-                huaweiToken: optional<string>
-                fcm_token:
-                  type: optional<string>
-                  docs: firebase device token
-                raven_id:
-                  type: optional<string>
-                  docs: user id affiliated with device
-                device_sid: optional<ids.DeviceId>
-                notifications_disabled: optional<boolean>
-                created_at: optional<long>
-                updated_at: optional<long>
+          request: Device 
           response:
             type: Device
             docs: Returns the updated Device
