@@ -23,7 +23,27 @@ services:
             user_id:
               type: ids.UserId
               docs: your user identifier
-          request: Device
+          request:
+            name: Device
+            body:
+              properties:
+                id: optional<string>
+                platform: optional<Platform>
+                onesignal_player_id: optional<string>
+                xiaomi_token: optional<string>
+                oppo_token: optional<string>
+                vivo_token: optional<string>
+                huaweiToken: optional<string>
+                fcm_token:
+                  type: optional<string>
+                  docs: firebase device token
+                raven_id:
+                  type: optional<string>
+                  docs: user id affiliated with device
+                device_sid: optional<ids.DeviceId>
+                notifications_disabled: optional<boolean>
+                created_at: optional<long>
+                updated_at: optional<long>
           response:
             type: Device
             docs: Returns the updated Device
@@ -42,7 +62,9 @@ services:
             device_id:
               type: ids.DeviceId
               docs: your device identifier; the same as device_sid
-          request: Device
+          request:
+            body:
+              type: Device
           response:
             type: Device
             docs: Returns the updated Device
@@ -79,26 +101,8 @@ services:
           response: Device
 
 types:
-  Device:
-    properties:
-      id: optional<string>
-      platform: optional<Platform>
-      onesignal_player_id: optional<string>
-      xiaomi_token: optional<string>
-      oppo_token: optional<string>
-      vivo_token: optional<string>
-      huaweiToken: optional<string>
-      fcm_token:
-        type: optional<string>
-        docs: firebase device token
-      raven_id:
-        type: optional<string>
-        docs: user id affiliated with device
-      device_sid: optional<ids.DeviceId>
-      notifications_disabled: optional<boolean>
-      created_at: optional<long>
-      updated_at: optional<long>
-
+  
+  
   Platform:
     enum:
       - android

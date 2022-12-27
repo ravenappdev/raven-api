@@ -26,7 +26,30 @@ services:
           path: /{app_id}/events/send
           path-parameters:
             app_id: ids.AppId
-          request: SendEventRequest
+          request:
+            name: SendEventRequest
+            body:
+              properties:
+                event:
+                  type: string
+                  docs: event name
+                data:
+                  type: map<string, unknown>
+                  docs: |
+                    {
+                    "param1" : "<value1>",
+                    "param2" : "<value2>",
+                    "param3" : object/array"
+                    }
+                user:
+                  type: optional<User>
+                scheduleAt:
+                  type: optional<long>
+                  docs: |
+                    Time to send message expressed as UTC milliseconds. 
+                    If not present, message will be sent immediately.
+                override:
+                  type: optional<EventOverride>
           response: SendEventResponse
 
         sendBulk:
@@ -34,33 +57,18 @@ services:
           path: /{app_id}/events/bulk_send
           path-parameters:
             app_id: ids.AppId
-          request: BulkSendEventRequest
+          request:
+            name: BulkSendEventRequest
+            body:
+              properties:
+                event: string
+                batch:
+                  type: list<BatchEvent>
+                  docs: List of events
           response: SendEventResponse
 
 types:
-  SendEventRequest:
-    properties:
-      event:
-        type: string
-        docs: event name
-      data:
-        type: map<string, unknown>
-        docs: |
-          {
-          "param1" : "<value1>",
-          "param2" : "<value2>",
-          "param3" : object/array"
-          }
-      user:
-        type: optional<User>
-      scheduleAt:
-        type: optional<long>
-        docs: |
-          Time to send message expressed as UTC milliseconds. 
-          If not present, message will be sent immediately.
-      override:
-        type: optional<EventOverride>
-
+  
   User:
     properties:
       user_id:
@@ -198,13 +206,6 @@ types:
     properties:
       id: ids.RequestId
       success: boolean
-
-  BulkSendEventRequest:
-    properties:
-      event: string
-      batch:
-        type: list<BatchEvent>
-        docs: List of events
 
   BatchEvent:
     properties:
