@@ -23,7 +23,7 @@ services:
           method: POST
           path: /{app_id}/events/send
           path-parameters:
-            app_id: 
+            app_id:
               type: ids.AppId
               docs: The `id` of the app
           request:
@@ -44,22 +44,34 @@ services:
                 override:
                   type: optional<EventOverride>
           response: SendEventResponse
-          examples: 
+          errors:
+            - EventNotFoundError
+          examples:
+            # success
             - path-parameters:
                 app_id: my_app_id
-              request: 
+              request:
                 event: sample_event_1
                 data:
                   name: name
                   date: 01 December 2022
-                user: 
+                user:
                   mobile: "+919876543210"
                   email: x@ravenapp.dev
                   whatsapp_mobile: "+919876543210"
               response:
-                body: 
-                  id: 1d1ed73c-96e6-4aa3-abc2-2e9a926f773a 
+                body:
+                  id: 1d1ed73c-96e6-4aa3-abc2-2e9a926f773a
                   success: true
+            # error
+            - path-parameters:
+                app_id: my_app_id
+              response:
+                error: EventNotFoundError
+                body: 
+                  success: false
+                  error: event not found
+
         sendBulk:
           method: POST
           path: /{app_id}/events/bulk_send
@@ -95,7 +107,7 @@ types:
           if empty, `mobile` is considered for whatsapp
       onesignal_external_id:
         type: optional<string>
-        docs: | 
+        docs: |
           [OneSignal external user IDs](https://documentation.onesignal.com/docs/external-user-ids)
       onesignal_player_ids:
         type: optional<list<string>>
@@ -228,3 +240,13 @@ types:
         type: optional<User>
       override:
         type: optional<EventOverride>
+
+  EventNotFoundErrorBody:
+    properties: 
+      success: boolean
+      error: string
+
+errors:
+  EventNotFoundError:
+    status-code: 404
+    type: EventNotFoundErrorBody

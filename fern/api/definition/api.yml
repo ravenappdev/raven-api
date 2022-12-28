@@ -3,6 +3,8 @@ auth: AuthKey
 auth-schemes:
   AuthKey:
     header: Authorization
+error-discrimination:
+  strategy: status-code
 environments:
   Prod: https://api.ravenapp.dev
 default-environment: Prod
