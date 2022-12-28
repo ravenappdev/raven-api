@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
-
 imports:
   ids: ids.yml
   device: device.yml
@@ -34,6 +32,21 @@ services:
           response:
             type: RavenUser
             docs: Returns updated or newly created user.
+          examples: 
+            - path-parameters:
+                app_id: my-app-id 
+              request: 
+                user_id: test-user
+                mobile: "9876543210"
+                email: x@ravenapp.dev
+              response: 
+                body: 
+                  user_id: test-user
+                  slack:
+                    access_token: my-access-token
+                    email: x@ravenapp.dev
+                    channel_id: channel-123
+          
 
         get:
           docs: Gets the requested user
@@ -47,6 +60,18 @@ services:
               type: ids.UserId
               docs: your user identifier
           response: RavenUser
+          examples: 
+            - path-parameters:
+                app_id: my-app-id 
+                user_id: my-user-id 
+              response: 
+                body: 
+                  user_id: my-user-id
+                  slack:
+                    access_token: my-access-token
+                    email: x@ravenapp.dev
+                    channel_id: channel-123
+            
 
 types:
 

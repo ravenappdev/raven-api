@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
+
 imports:
   ids: ids.yml
   user: user.yml
@@ -95,6 +97,32 @@ services:
                   type: list<BatchEvent>
                   docs: List of events
           response: SendEventResponse
+          examples: 
+            - path-parameters:
+                app_id: my-app-id 
+              request: 
+                event: sample_event_1
+                batch: 
+                  - user: 
+                      mobile: "+919876543210"
+                      email: x@ravenapp.dev
+                      whatsapp_mobile: "+919876543210"
+                    data: 
+                      name: John Doe 
+                      date: 01 December 2022
+                  - user: 
+                      mobile: "+919876543210"
+                      email: x@ravenapp.dev
+                      whatsapp_mobile: "+919876543210"
+                    data: 
+                      name: John Doe 
+                      date: 01 December 2022
+              response:
+                body:
+                  id: 1d1ed73c-96e6-4aa3-abc2-2e9a926f773a
+                  success: true
+                
+
 
 types:
   User:
