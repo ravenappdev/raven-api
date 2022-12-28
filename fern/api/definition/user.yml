@@ -49,7 +49,7 @@ services:
           response: RavenUser
 
 types:
-  
+
   RavenUser:
     properties:
       user_id:

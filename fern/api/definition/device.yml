@@ -23,7 +23,7 @@ services:
             user_id:
               type: ids.UserId
               docs: your user identifier
-          request: Device 
+          request: Device
           response:
             type: Device
             docs: Returns the updated Device
@@ -81,7 +81,7 @@ services:
           response: Device
 
 types:
-  Device: 
+  Device:
     properties:
       id: optional<string>
       platform: optional<Platform>
@@ -100,7 +100,7 @@ types:
       notifications_disabled: optional<boolean>
       created_at: optional<long>
       updated_at: optional<long>
-  
+
   Platform:
     enum:
       - android

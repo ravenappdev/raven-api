@@ -66,9 +66,18 @@ services:
             # error
             - path-parameters:
                 app_id: my_app_id
+              request:
+                event: sample_event_1
+                data:
+                  name: name
+                  date: 01 December 2022
+                user:
+                  mobile: "+919876543210"
+                  email: x@ravenapp.dev
+                  whatsapp_mobile: "+919876543210"
               response:
                 error: EventNotFoundError
-                body: 
+                body:
                   success: false
                   error: event not found
 
@@ -242,7 +251,7 @@ types:
         type: optional<EventOverride>
 
   EventNotFoundErrorBody:
-    properties: 
+    properties:
       success: boolean
       error: string
 
