@@ -2,7 +2,7 @@ groups:
   external:
     generators:
       - name: fernapi/fern-typescript-sdk
-        version: 0.0.249
+        version: 0.0.251
         output:
           location: npm
           package-name: '@ravenapp/raven'
@@ -23,7 +23,7 @@ groups:
         github:
           repository: ravenappdev/raven-openapi
       - name: fernapi/fern-postman
-        version: 0.0.32-rc0
+        version: 0.0.32
         output:
           location: postman
           api-key: ${POSTMAN_API_KEY}
