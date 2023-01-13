@@ -16,7 +16,21 @@ services:
           path: /{app_id}/users
           path-parameters:
             app_id: ids.AppId
-          request: CreateUserRequest
+          request:
+            name: CreateUserRequest
+            body:
+              properties:
+                user_id:
+                  type: ids.UserId
+                  docs: |
+                    Your user identifier. 
+                      if user_id already exists, user properties will be updated else a new user will be created
+                mobile: optional<string>
+                email: optional<string>
+                whats_app:
+                  type: optional<string>
+                  docs: include this only when user's whatsapp mobile is different than primary
+                    mobile
           response:
             type: RavenUser
             docs: Returns updated or newly created user.
@@ -35,18 +49,6 @@ services:
           response: RavenUser
 
 types:
-  CreateUserRequest:
-    properties:
-      user_id:
-        type: ids.UserId
-        docs: |
-          Your user identifier. 
-            if user_id already exists, user properties will be updated else a new user will be created
-      mobile: optional<string>
-      email: optional<string>
-      whats_app:
-        type: optional<string>
-        docs: include this only when user's whatsapp mobile is different than primary mobile
 
   RavenUser:
     properties:
@@ -63,7 +65,8 @@ types:
         type: optional<string>
       whatsapp_mobile:
         type: optional<string>
-        docs: Include this only when user's whatsapp mobile is different than primary mobile
+        docs: Include this only when user's whatsapp mobile is different than primary
+          mobile
       slack: optional<SlackProfile>
       telegram: optional<TelegramProfile>
       fcm_tokens: optional<list<string>>
