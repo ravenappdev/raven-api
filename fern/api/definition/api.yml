@@ -1,4 +1,5 @@
 name: api
+display-name: Raven API 
 auth: AuthKey
 auth-schemes:
   AuthKey:

@@ -2,10 +2,10 @@
 
 Tagging a release on this repository will update the:
 
-- [TypeScript SDK Github Repo](https://github.com/ravenappdev/raven-node)
-- [Java SDK Github Repo](https://github.com/ravenappdev/raven-java)
-- [OpenAPI Description Github Repo](https://github.com/ravenappdev/raven-openapi)
-- [Postman Collection Github Repo](https://github.com/ravenappdev/raven-postman)
+- [TypeScript SDK repo](https://github.com/ravenappdev/raven-node)
+- [Java SDK repo](https://github.com/ravenappdev/raven-java)
+- [OpenAPI spec repo](https://github.com/ravenappdev/raven-openapi)
+- [Postman collection repo](https://github.com/ravenappdev/raven-postman)
 - _More SDKs to come..._
 
 ## What is in this repository?
