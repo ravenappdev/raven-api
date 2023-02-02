@@ -43,4 +43,4 @@ fern generate
 fern generate --group publish --version <0.0.x>
 ```
 
-This command currently runs in a GitHub workflow (see [ci.yml](.github/workflows/ci.yml#L32))
+The publish command currently runs in a GitHub workflow (see [ci.yml](.github/workflows/ci.yml#L32))
