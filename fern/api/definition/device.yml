@@ -27,6 +27,17 @@ services:
           response:
             type: Device
             docs: Returns the updated Device
+          examples: 
+            - path-parameters:
+                app_id: my-app-id 
+                user_id: my-user-id 
+              request: 
+                fcm_token: qweKu7bdTZumJpzxUqqpxe:APA91bE9FSScPK_kENPpBAj0URYDo4z0tE6aOrBtpgaA1I1OC7GBes1lR71EWRhavLGMzDMKPPLkUoqtvPHzCgq
+                platform: android 
+              response: 
+                body: 
+                  id: my-device-id
+                  platform: android
 
         update:
           docs: Update a Device for a User.
@@ -42,10 +53,24 @@ services:
             device_id:
               type: ids.DeviceId
               docs: your device identifier; the same as device_sid
-          request: Device
+          request:
+            body:
+              type: Device
           response:
             type: Device
             docs: Returns the updated Device
+          examples:
+            - path-parameters:
+                app_id: my-app-id 
+                user_id: my-user-id 
+                device_id: my-device-id
+              request: 
+                fcm_token: qweKu7bdTZumJpzxUqqpxe:APA91bE9FSScPK_kENPpBAj0URYDo4z0tE6aOrBtpgaA1I1OC7GBes1lR71EWRhavLGMzDMKPPLkUoqtvPHzCgq
+                platform: android 
+              response: 
+                body: 
+                  id: my-device-id
+                  platform: android
 
         delete:
           docs: Delete a Device for a User

@@ -25,49 +25,113 @@ services:
           method: POST
           path: /{app_id}/events/send
           path-parameters:
-            app_id: ids.AppId
-          request: SendEventRequest
+            app_id:
+              type: ids.AppId
+              docs: The `id` of the app
+          request:
+            name: SendEventRequest
+            body:
+              properties:
+                event:
+                  type: string
+                  docs: The name of the event
+                data: map<string, unknown>
+                user:
+                  type: optional<User>
+                scheduleAt:
+                  type: optional<long>
+                  docs: |
+                    Time to send message expressed as UTC milliseconds. 
+                    If not present, message will be sent immediately.
+                override:
+                  type: optional<EventOverride>
           response: SendEventResponse
+          errors:
+            - EventNotFoundError
+          examples:
+            # success
+            - path-parameters:
+                app_id: my_app_id
+              request:
+                event: sample_event_1
+                data:
+                  name: name
+                  date: 01 December 2022
+                user:
+                  mobile: "+919876543210"
+                  email: x@ravenapp.dev
+                  whatsapp_mobile: "+919876543210"
+              response:
+                body:
+                  id: 1d1ed73c-96e6-4aa3-abc2-2e9a926f773a
+                  success: true
+            # error
+            - path-parameters:
+                app_id: my_app_id
+              request:
+                event: sample_event_1
+                data:
+                  name: name
+                  date: 01 December 2022
+                user:
+                  mobile: "+919876543210"
+                  email: x@ravenapp.dev
+                  whatsapp_mobile: "+919876543210"
+              response:
+                error: EventNotFoundError
+                body:
+                  success: false
+                  error: event not found
 
         sendBulk:
           method: POST
           path: /{app_id}/events/bulk_send
           path-parameters:
             app_id: ids.AppId
-          request: BulkSendEventRequest
+          request:
+            name: BulkSendEventRequest
+            body:
+              properties:
+                event: string
+                batch:
+                  type: list<BatchEvent>
+                  docs: List of events
           response: SendEventResponse
+          examples: 
+            - path-parameters:
+                app_id: my-app-id 
+              request: 
+                event: sample_event_1
+                batch: 
+                  - user: 
+                      mobile: "+919876543210"
+                      email: x@ravenapp.dev
+                      whatsapp_mobile: "+919876543210"
+                    data: 
+                      name: John Doe 
+                      date: 01 December 2022
+                  - user: 
+                      mobile: "+919876543210"
+                      email: x@ravenapp.dev
+                      whatsapp_mobile: "+919876543210"
+                    data: 
+                      name: John Doe 
+                      date: 01 December 2022
+              response:
+                body:
+                  id: 1d1ed73c-96e6-4aa3-abc2-2e9a926f773a
+                  success: true
+                
+
 
 types:
-  SendEventRequest:
-    properties:
-      event:
-        type: string
-        docs: event name
-      data:
-        type: map<string, unknown>
-        docs: |
-          {
-          "param1" : "<value1>",
-          "param2" : "<value2>",
-          "param3" : object/array"
-          }
-      user:
-        type: optional<User>
-      scheduleAt:
-        type: optional<long>
-        docs: |
-          Time to send message expressed as UTC milliseconds. 
-          If not present, message will be sent immediately.
-      override:
-        type: optional<EventOverride>
-
   User:
     properties:
       user_id:
         type: optional<ids.UserId>
         docs: |
           userId to send the notifications to. 
-          This is  your own user identifier which you have used to create user on Raven
+          This is  your own user identifier which you have used to [create user on Raven](https://docs.raven.dev/api-reference/create-user)
       email:
         type: optional<string>
       mobile:
@@ -80,8 +144,8 @@ types:
           if empty, `mobile` is considered for whatsapp
       onesignal_external_id:
         type: optional<string>
-        docs: "[OneSignal external user
-          IDs](https://documentation.onesignal.com/docs/external-user-ids)"
+        docs: |
+          [OneSignal external user IDs](https://documentation.onesignal.com/docs/external-user-ids)
       onesignal_player_ids:
         type: optional<list<string>>
       fcm_tokens:
@@ -199,13 +263,6 @@ types:
       id: ids.RequestId
       success: boolean
 
-  BulkSendEventRequest:
-    properties:
-      event: string
-      batch:
-        type: list<BatchEvent>
-        docs: List of events
-
   BatchEvent:
     properties:
       data:
@@ -220,3 +277,13 @@ types:
         type: optional<User>
       override:
         type: optional<EventOverride>
+
+  EventNotFoundErrorBody:
+    properties:
+      success: boolean
+      error: string
+
+errors:
+  EventNotFoundError:
+    status-code: 404
+    type: EventNotFoundErrorBody

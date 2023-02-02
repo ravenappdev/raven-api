@@ -16,10 +16,39 @@ services:
           path: /{app_id}/users
           path-parameters:
             app_id: ids.AppId
-          request: CreateUserRequest
+          request:
+            name: CreateUserRequest
+            body:
+              properties:
+                user_id:
+                  type: ids.UserId
+                  docs: |
+                    Your user identifier. 
+                      if user_id already exists, user properties will be updated else a new user will be created
+                mobile: optional<string>
+                email: optional<string>
+                whats_app:
+                  type: optional<string>
+                  docs: include this only when user's whatsapp mobile is different than primary
+                    mobile
           response:
             type: RavenUser
             docs: Returns updated or newly created user.
+          examples: 
+            - path-parameters:
+                app_id: my-app-id 
+              request: 
+                user_id: test-user
+                mobile: "9876543210"
+                email: x@ravenapp.dev
+              response: 
+                body: 
+                  user_id: test-user
+                  slack:
+                    access_token: my-access-token
+                    email: x@ravenapp.dev
+                    channel_id: channel-123
+          
 
         get:
           docs: Gets the requested user
@@ -33,20 +62,20 @@ services:
               type: ids.UserId
               docs: your user identifier
           response: RavenUser
+          examples: 
+            - path-parameters:
+                app_id: my-app-id 
+                user_id: my-user-id 
+              response: 
+                body: 
+                  user_id: my-user-id
+                  slack:
+                    access_token: my-access-token
+                    email: x@ravenapp.dev
+                    channel_id: channel-123
+            
 
 types:
-  CreateUserRequest:
-    properties:
-      user_id:
-        type: ids.UserId
-        docs: |
-          Your user identifier. 
-            if user_id already exists, user properties will be updated else a new user will be created
-      mobile: optional<string>
-      email: optional<string>
-      whats_app:
-        type: optional<string>
-        docs: include this only when user's whatsapp mobile is different than primary mobile
 
   RavenUser:
     properties:
@@ -63,7 +92,8 @@ types:
         type: optional<string>
       whatsapp_mobile:
         type: optional<string>
-        docs: Include this only when user's whatsapp mobile is different than primary mobile
+        docs: Include this only when user's whatsapp mobile is different than primary
+          mobile
       slack: optional<SlackProfile>
       telegram: optional<TelegramProfile>
       fcm_tokens: optional<list<string>>
