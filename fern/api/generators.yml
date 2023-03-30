@@ -1,6 +1,5 @@
 default-group: local
 groups:
-  # output generated files locally
   local:
     generators:
       - name: fernapi/fern-typescript-sdk
@@ -8,21 +7,18 @@ groups:
         output:
           location: local-file-system
           path: ../../generated/typescript
-
       - name: fernapi/fern-openapi
         version: 0.0.19
         output:
           location: local-file-system
           path: ../../generated/openapi
-  
-  # publish generated files
   publish:
     generators:
       - name: fernapi/fern-typescript-sdk
         version: 0.0.273
         output:
           location: npm
-          package-name: '@ravenapp/raven'
+          package-name: "@ravenapp/raven"
           token: ${RAVEN_NPM_TOKEN}
         github:
           repository: ravenappdev/raven-node
@@ -47,3 +43,11 @@ groups:
           workspace-id: ${POSTMAN_WORKSPACE_ID}
         github:
           repository: ravenappdev/raven-postman
+      - name: fernapi/fern-python-sdk
+        version: 0.1.1
+        output:
+          location: pypi
+          package-name: ravendev
+          token: ${PYPI_TOKEN}
+        github:
+          repository: ravenappdev/raven-python
