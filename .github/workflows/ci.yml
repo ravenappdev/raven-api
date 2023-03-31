@@ -34,6 +34,7 @@ jobs:
           RAVEN_NPM_TOKEN: ${{ secrets.RAVEN_NPM_TOKEN }}
           RAVEN_MAVEN_USERNAME: ${{ secrets.RAVEN_MAVEN_USERNAME }}
           RAVEN_MAVEN_TOKEN: ${{ secrets.RAVEN_MAVEN_TOKEN }}
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
           POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
           POSTMAN_WORKSPACE_ID: ${{ secrets.POSTMAN_WORKSPACE_ID }}
           FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
