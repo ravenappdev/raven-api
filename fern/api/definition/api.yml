@@ -4,6 +4,7 @@ auth: AuthKey
 auth-schemes:
   AuthKey:
     header: Authorization
+    prefix: AuthKey
 error-discrimination:
   strategy: status-code
 environments:
