@@ -44,7 +44,7 @@ groups:
         github:
           repository: ravenappdev/raven-postman
       - name: fernapi/fern-python-sdk
-        version: 0.1.4
+        version: 0.2.1
         output:
           location: pypi
           package-name: ravendev
